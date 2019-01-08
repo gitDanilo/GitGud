@@ -1,0 +1,9 @@
+[player_mod]
+invisible         = false
+super_armor       = false
+no_damage         = false
+no_fp_cost        = false
+no_stamina_cost   = true
+no_goods_consume  = true
+no_arrows_consume = true
+backflip_animation= true

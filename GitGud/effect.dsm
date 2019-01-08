@@ -1,0 +1,709 @@
+[effect_mod:0x6ADEE32] -- Aldrich's Ruby Ring
+-- Effect duration: decimal value
+effect_duration    = 0 -- Duration in seconds, -1 = Infinite
+duration_increase  = 0 -- Used on Pontiff's right eye effect
+-- Player basic status: decimal values (works on buffs for the player)
+max_hp_rate        = 1.0 -- 100% HP
+max_fp_rate        = 1.0
+max_stamina_rate   = 1.0
+-- Resistance reduction on hit: decimal values
+slash_dmg_rate     = 1.0
+blow_dmg_rate      = 1.0
+thrust_dmg_rate    = 1.0
+neutral_dmg_rate   = 1.0
+magic_dmg_rate     = 1.0
+fire_dmg_rate      = 1.0
+lightning_dmg_rate = 1.0
+-- Attack power rate: decimal values (works on buffs for the player)
+physical_power     = 1.0 -- Increases dmg by %, ex: 1.2 = + 20%
+magic_power        = 1.0
+fire_power         = 1.0
+lightning_power    = 1.0
+-- HP and FP change per effect proc: integer value
+change_hp          = -200 -- Gain 500 HP
+change_fp          = -100
+-- Fall damage rate: decimal value
+fall_dmg_rate      = 1.0
+-- Attunement slots: 0 - 255
+attunement_slot    = 0
+-- Status buff: 0 - 255 (works on buffs for the player)
+vigor_buff         = 0
+attunement_buff    = 0
+endurance_buff     = 0
+vitality_buff      = 0
+strenght_buff      = 0
+dexterity_buff     = 0
+intelligence_buff  = 0
+faith_buff         = 0
+luck_buff          = 0
+-- Build up rate: integer value
+poison_rate        = 0
+frost_rate         = 0
+-- Adds an effect on hit: integer value, -1 = disabled
+effect_id          = -1
+-- Weapon blood: integer value
+weapon_blood       = 0
+------------------------------------------------
+[effect_mod:0x867] -- Rotten Pine Resin build up
+-- Effect duration: decimal value
+effect_duration    = 20.0 -- Duration in seconds, -1 = Infinite
+duration_increase  = 1 -- Used on Pontiff's right eye effect
+-- Player basic status: decimal values
+max_hp_rate        = 1.0
+max_fp_rate        = 1.0
+max_stamina_rate   = 1.0
+-- Resistance reduction on hit: decimal values
+slash_dmg_rate     = 1.05 -- -5% slash dmg resistance
+blow_dmg_rate      = 1.05
+thrust_dmg_rate    = 1.05
+neutral_dmg_rate   = 1.05
+magic_dmg_rate     = 1.05
+fire_dmg_rate      = 1.05
+lightning_dmg_rate = 1.05
+-- Attack power rate: decimal values (works on buffs for the player)
+physical_power     = 1.0 -- Increases dmg by %, ex: 1.2 = + 20%
+magic_power        = 1.0
+fire_power         = 1.0
+lightning_power    = 1.0
+-- HP and FP change per effect proc: integer value
+change_hp          = 30 -- Removes 30hp per poison tick
+change_fp          = 0
+-- Fall damage rate: decimal value
+fall_dmg_rate      = 1.0
+-- Attunement slots: 0 - 255
+attunement_slot    = 0
+-- Status buff: 0 - 255 (works on buffs for the player)
+vigor_buff         = 0
+attunement_buff    = 0
+endurance_buff     = 0
+vitality_buff      = 0
+strenght_buff      = 0
+dexterity_buff     = 0
+intelligence_buff  = 0
+faith_buff         = 0
+luck_buff          = 0
+-- Build up rate: integer value
+poison_rate        = 35
+frost_rate         = 0
+-- Adds an effect on hit: integer value, -1 = disabled
+effect_id          = -1
+-- Weapon blood: integer value
+weapon_blood       = 0
+-------------------------------------------------
+[effect_mod:0x7B066F2] -- Bloodlust weapon effect
+-- Effect duration: decimal value
+effect_duration    = 0 -- Duration in seconds, -1 = Infinite
+duration_increase  = 0 -- Used on Pontiff's right eye effect
+-- Player basic status: decimal values (works on buffs for the player)
+max_hp_rate        = 1.0
+max_fp_rate        = 1.0
+max_stamina_rate   = 1.0
+-- Resistance reduction on hit: decimal values
+slash_dmg_rate     = 1.0 -- -0% slash dmg resistance
+blow_dmg_rate      = 1.0
+thrust_dmg_rate    = 1.0
+neutral_dmg_rate   = 1.0
+magic_dmg_rate     = 1.0
+fire_dmg_rate      = 1.0
+lightning_dmg_rate = 1.0
+-- Attack power rate: decimal values (works on buffs for the player)
+physical_power     = 1.0 -- Increases dmg by %, ex: 1.2 = + 20%
+magic_power        = 1.0
+fire_power         = 1.0
+lightning_power    = 1.0
+-- HP and FP change per effect proc: integer value
+change_hp          = 0 -- Removes 0hp on proc
+change_fp          = 0
+-- Fall damage rate: decimal value
+fall_dmg_rate      = 1.0
+-- Attunement slots: 0 - 255
+attunement_slot    = 0
+-- Status buff: 0 - 255 (works on buffs for the player)
+vigor_buff         = 0
+attunement_buff    = 0
+endurance_buff     = 0
+vitality_buff      = 0
+strenght_buff      = 0
+dexterity_buff     = 0
+intelligence_buff  = 0
+faith_buff         = 0
+luck_buff          = 0
+-- Build up rate: integer value
+poison_rate        = 0
+frost_rate         = 0
+-- Adds an effect on hit: integer value, -1 = disabled
+effect_id          = -1
+-- Weapon blood: integer value
+weapon_blood       = 160
+-----------------------------------------------
+[effect_mod:0x7C06975] -- Bloodlust buff effect
+-- Effect duration: decimal value
+effect_duration    = 60 -- Duration in seconds, -1 = Infinite
+duration_increase  = 0 -- Used on Pontiff's right eye effect
+-- Player basic status: decimal values
+max_hp_rate        = 0.6 -- Removes 40% hp
+max_fp_rate        = 0.5 -- Removes 50% fp
+max_stamina_rate   = 1.0
+-- Resistance reduction on hit: decimal values
+slash_dmg_rate     = 1.0 -- -0% slash dmg resistance
+blow_dmg_rate      = 1.0
+thrust_dmg_rate    = 1.0
+neutral_dmg_rate   = 1.0
+magic_dmg_rate     = 1.0
+fire_dmg_rate      = 1.0
+lightning_dmg_rate = 1.0
+-- Attack power rate: decimal values
+physical_power     = 1.50 -- Increases dmg by 50%, ex: 1.2 = + 20%
+magic_power        = 1.50
+fire_power         = 1.50
+lightning_power    = 1.50
+-- HP and FP change per effect proc: integer value
+change_hp          = 0 -- Removes 0hp on proc
+change_fp          = 0
+-- Fall damage rate: decimal value
+fall_dmg_rate      = 1.0
+-- Attunement slots: 0 - 255
+attunement_slot    = 0
+-- Status buff: 0 - 255
+vigor_buff         = 0
+attunement_buff    = 0
+endurance_buff     = 0
+vitality_buff      = 0
+strenght_buff      = 0
+dexterity_buff     = 0
+intelligence_buff  = 0
+faith_buff         = 0
+luck_buff          = 0
+-- Build up rate: integer value
+poison_rate        = 0
+frost_rate         = 0 -- Instant frost
+-- Adds an effect on hit: integer value, -1 = disabled
+effect_id          = -1
+-- Weapon blood: integer value
+weapon_blood       = 0
+------------------------------------------
+[effect_mod:0x6ADD6C0] -- Untrue dark ring
+-- Effect duration: decimal value
+effect_duration    = -1 -- Duration in seconds, -1 = Infinite
+duration_increase  = 0 -- Used on Pontiff's right eye effect
+-- Player basic status: decimal values (works on buffs for the player)
+max_hp_rate        = 1.3 -- +30% HP
+max_fp_rate        = 1.0
+max_stamina_rate   = 1.0
+-- Resistance reduction on hit: decimal values
+slash_dmg_rate     = 1.0
+blow_dmg_rate      = 1.0
+thrust_dmg_rate    = 1.0
+neutral_dmg_rate   = 1.0
+magic_dmg_rate     = 1.0
+fire_dmg_rate      = 1.0
+lightning_dmg_rate = 1.0
+-- Attack power rate: decimal values (works on buffs for the player)
+physical_power     = 1.1 -- Increases dmg by 10%
+magic_power        = 1.1
+fire_power         = 1.1
+lightning_power    = 1.1
+-- HP and FP change per effect proc: integer value
+change_hp          = 0
+change_fp          = 0
+-- Fall damage rate: decimal value
+fall_dmg_rate      = 1.0
+-- Attunement slots: 0 - 255
+attunement_slot    = 1
+-- Status buff: 0 - 255 (works on buffs for the player)
+vigor_buff         = 5
+attunement_buff    = 5
+endurance_buff     = 5
+vitality_buff      = 5
+strenght_buff      = 5
+dexterity_buff     = 5
+intelligence_buff  = 5
+faith_buff         = 5
+luck_buff          = 5
+-- Build up rate: integer value
+poison_rate        = 0
+frost_rate         = 0
+-- Adds an effect on hit: integer value, -1 = disabled
+effect_id          = 112042000 -- Cat ring effect
+-- Weapon blood: integer value
+weapon_blood       = 0
+
+----------------------------------------------------------
+-- HERBER
+----------------------------------------------------------
+
+[effect_mod:0x7C0B8AC] -- CHAOS (buff butchers)
+-- Effect duration: decimal value
+effect_duration    = 0 -- Duration in seconds, -1 = Infinite
+duration_increase  = 0 -- Used on Pontiff's right eye effect
+-- Player basic status: decimal values
+max_hp_rate        = 1.0 -- Removes 30% hp
+max_fp_rate        = 1.0 -- Removes 50% fp
+max_stamina_rate   = 1.0
+-- Resistance reduction on hit: decimal values
+slash_dmg_rate     = 1.0 -- -0% slash dmg resistance
+blow_dmg_rate      = 1.0
+thrust_dmg_rate    = 1.0
+neutral_dmg_rate   = 1.0
+magic_dmg_rate     = 1.0
+fire_dmg_rate      = 1.0
+lightning_dmg_rate = 1.0
+-- Attack power rate: decimal values
+physical_power     = 1.0 -- Increases dmg by %, ex: 1.2 = + 20%
+magic_power        = 1.0
+fire_power         = 1.0
+lightning_power    = 1.0
+-- HP and FP change per effect proc: integer value
+change_hp          = 145 -- Removes 0hp on proc
+change_fp          = -18
+-- Fall damage rate: decimal value
+fall_dmg_rate      = 1.0
+-- Attunement slots: 0 - 255
+attunement_slot    = 0
+-- Status buff: 0 - 255
+vigor_buff         = 0
+attunement_buff    = 0
+endurance_buff     = 0
+vitality_buff      = 0
+strenght_buff      = 0
+dexterity_buff     = 0
+intelligence_buff  = 0
+faith_buff         = 0
+luck_buff          = 0
+-- Build up rate: integer value
+poison_rate        = 0
+frost_rate         = 0 -- Instant frost
+-- Adds an effect on hit: integer value, -1 = disabled
+effect_id          = -1
+-- Weapon blood: integer value
+weapon_blood       = 0
+
+----------------------------------------------
+
+[effect_mod:0x62ECC18] -- Lifesteal
+-- Effect duration: decimal value
+effect_duration    = 0 -- Duration in seconds, -1 = Infinite
+duration_increase  = 0 -- Used on Pontiff's right eye effect
+-- Player basic status: decimal values
+max_hp_rate        = 1.0 -- Removes 30% hp
+max_fp_rate        = 1.0 -- Removes 50% fp
+max_stamina_rate   = 1.0
+-- Resistance reduction on hit: decimal values
+slash_dmg_rate     = 1.0 -- -0% slash dmg resistance
+blow_dmg_rate      = 1.0
+thrust_dmg_rate    = 1.0
+neutral_dmg_rate   = 1.0
+magic_dmg_rate     = 1.0
+fire_dmg_rate      = 1.0
+lightning_dmg_rate = 1.0
+-- Attack power rate: decimal values
+physical_power     = 1.0 -- Increases dmg by %, ex: 1.2 = + 20%
+magic_power        = 1.0
+fire_power         = 1.0
+lightning_power    = 1.0
+-- HP and FP change per effect proc: integer value
+change_hp          = -145 -- Removes 0hp on proc
+change_fp          = 0
+-- Fall damage rate: decimal value
+fall_dmg_rate      = 1.0
+-- Attunement slots: 0 - 255
+attunement_slot    = 0
+-- Status buff: 0 - 255
+vigor_buff         = 0
+attunement_buff    = 0
+endurance_buff     = 0
+vitality_buff      = 0
+strenght_buff      = 0
+dexterity_buff     = 0
+intelligence_buff  = 0
+faith_buff         = 0
+luck_buff          = 0
+-- Build up rate: integer value
+poison_rate        = 0
+frost_rate         = 0 -- Instant frost
+-- Adds an effect on hit: integer value, -1 = disabled
+effect_id          = -1
+-- Weapon blood: integer value
+weapon_blood       = 0
+
+-------------------------------------------
+
+[effect_mod:0x7C06898] -- Chaos Blade (buff bleed whip)
+-- Effect duration: decimal value
+effect_duration    = 0 -- Duration in seconds, -1 = Infinite
+duration_increase  = 0 -- Used on Pontiff's right eye effect
+-- Player basic status: decimal values
+max_hp_rate        = 1.0 -- Removes 30% hp
+max_fp_rate        = 1.0 -- Removes 50% fp
+max_stamina_rate   = 1.0
+-- Resistance reduction on hit: decimal values
+slash_dmg_rate     = 1.0 -- -0% slash dmg resistance
+blow_dmg_rate      = 1.0
+thrust_dmg_rate    = 1.0
+neutral_dmg_rate   = 1.0
+magic_dmg_rate     = 1.0
+fire_dmg_rate      = 1.0
+lightning_dmg_rate = 1.0
+-- Attack power rate: decimal values
+physical_power     = 1.0 -- Increases dmg by %, ex: 1.2 = + 20%
+magic_power        = 1.0
+fire_power         = 1.0
+lightning_power    = 1.0
+-- HP and FP change per effect proc: integer value
+change_hp          = 220 -- Removes 0hp on proc
+change_fp          = 0
+-- Fall damage rate: decimal value
+fall_dmg_rate      = 1.0
+-- Attunement slots: 0 - 255
+attunement_slot    = 0
+-- Status buff: 0 - 255
+vigor_buff         = 0
+attunement_buff    = 0
+endurance_buff     = 0
+vitality_buff      = 0
+strenght_buff      = 0
+dexterity_buff     = 0
+intelligence_buff  = 0
+faith_buff         = 0
+luck_buff          = 0
+-- Build up rate: integer value
+poison_rate        = 0
+frost_rate         = 0 -- Instant frost
+-- Adds an effect on hit: integer value, -1 = disabled
+effect_id          = -1
+-- Weapon blood: integer value
+weapon_blood       = 0
+
+
+-----------------------------------------------
+
+[effect_mod:0x878494A] -- Corvian Scythe SELF bleed
+-- Effect duration: decimal value
+effect_duration    = 0 -- Duration in seconds, -1 = Infinite
+duration_increase  = 0 -- Used on Pontiff's right eye effect
+-- Player basic status: decimal values
+max_hp_rate        = 1.0 -- Removes 30% hp
+max_fp_rate        = 1.0 -- Removes 50% fp
+max_stamina_rate   = 1.0
+-- Resistance reduction on hit: decimal values
+slash_dmg_rate     = 1.0 -- -0% slash dmg resistance
+blow_dmg_rate      = 1.0
+thrust_dmg_rate    = 1.0
+neutral_dmg_rate   = 1.0
+magic_dmg_rate     = 1.0
+fire_dmg_rate      = 1.0
+lightning_dmg_rate = 1.0
+-- Attack power rate: decimal values
+physical_power     = 1.0 -- Increases dmg by %, ex: 1.2 = + 20%
+magic_power        = 1.0
+fire_power         = 1.0
+lightning_power    = 1.0
+-- HP and FP change per effect proc: integer value
+change_hp          = -50 -- Removes 0hp on proc
+change_fp          = 0
+-- Fall damage rate: decimal value
+fall_dmg_rate      = 1.0
+-- Attunement slots: 0 - 255
+attunement_slot    = 0
+-- Status buff: 0 - 255
+vigor_buff         = 0
+attunement_buff    = 0
+endurance_buff     = 0
+vitality_buff      = 0
+strenght_buff      = 0
+dexterity_buff     = 0
+intelligence_buff  = 0
+faith_buff         = 0
+luck_buff          = 0
+-- Build up rate: integer value
+poison_rate        = 0
+frost_rate         = 0 -- Instant frost
+-- Adds an effect on hit: integer value, -1 = disabled
+effect_id          = 140201300
+-- Weapon blood: integer value
+weapon_blood       = 400
+
+
+
+------------------------------------------------------
+
+[effect_mod:0x85B4D54] -- basic poison buildup
+-- Effect duration: decimal value
+effect_duration    = 50 -- Duration in seconds, -1 = Infinite
+duration_increase  = 1 -- Used on Pontiff's right eye effect
+-- Player basic status: decimal values
+max_hp_rate        = 1.0 -- Removes 30% hp
+max_fp_rate        = 1.0 -- Removes 50% fp
+max_stamina_rate   = 1.0
+-- Resistance reduction on hit: decimal values
+slash_dmg_rate     = 1.0 -- -0% slash dmg resistance
+blow_dmg_rate      = 1.0
+thrust_dmg_rate    = 1.0
+neutral_dmg_rate   = 1.0
+magic_dmg_rate     = 1.0
+fire_dmg_rate      = 1.0
+lightning_dmg_rate = 1.0
+-- Attack power rate: decimal values
+physical_power     = 1.0 -- Increases dmg by %, ex: 1.2 = + 20%
+magic_power        = 1.0
+fire_power         = 1.0
+lightning_power    = 1.0
+-- HP and FP change per effect proc: integer value
+change_hp          = 100 -- Removes 0hp on proc
+change_fp          = 0
+-- Fall damage rate: decimal value
+fall_dmg_rate      = 1.0
+-- Attunement slots: 0 - 255
+attunement_slot    = 0
+-- Status buff: 0 - 255
+vigor_buff         = 0
+attunement_buff    = 0
+endurance_buff     = 0
+vitality_buff      = 0
+strenght_buff      = 0
+dexterity_buff     = 0
+intelligence_buff  = 0
+faith_buff         = 0
+luck_buff          = 0
+-- Build up rate: integer value
+poison_rate        = 300
+frost_rate         = 0 -- Instant frost
+-- Adds an effect on hit: integer value, -1 = disabled
+effect_id          = -1
+-- Weapon blood: integer value
+weapon_blood       = 0
+
+------------------------------------------------
+
+[effect_mod:0x7B08E0A] -- Corvian Scythe bleed BLEED MESMO
+-- Effect duration: decimal value
+effect_duration    = 0 -- Duration in seconds, -1 = Infinite
+duration_increase  = 0 -- Used on Pontiff's right eye effect
+-- Player basic status: decimal values
+max_hp_rate        = 1.0 -- Removes 30% hp
+max_fp_rate        = 1.0 -- Removes 50% fp
+max_stamina_rate   = 1.0
+-- Resistance reduction on hit: decimal values
+slash_dmg_rate     = 1.0 -- -0% slash dmg resistance
+blow_dmg_rate      = 1.0
+thrust_dmg_rate    = 1.0
+neutral_dmg_rate   = 1.0
+magic_dmg_rate     = 1.0
+fire_dmg_rate      = 1.0
+lightning_dmg_rate = 1.0
+-- Attack power rate: decimal values
+physical_power     = 1.0 -- Increases dmg by %, ex: 1.2 = + 20%
+magic_power        = 1.0
+fire_power         = 1.0
+lightning_power    = 1.0
+-- HP and FP change per effect proc: integer value
+change_hp          = 200 -- Removes 0hp on proc
+change_fp          = 0
+-- Fall damage rate: decimal value
+fall_dmg_rate      = 1.0
+-- Attunement slots: 0 - 255
+attunement_slot    = 0
+-- Status buff: 0 - 255
+vigor_buff         = 0
+attunement_buff    = 0
+endurance_buff     = 0
+vitality_buff      = 0
+strenght_buff      = 0
+dexterity_buff     = 0
+intelligence_buff  = 0
+faith_buff         = 0
+luck_buff          = 0
+-- Build up rate: integer value
+poison_rate        = 0
+frost_rate         = 0 -- Instant frost
+-- Adds an effect on hit: integer value, -1 = disabled
+effect_id          = -1
+-- Weapon blood: integer value
+weapon_blood       = 125
+-----------------------------------------------------
+
+
+[effect_mod:0x88678E4] -- Irithyl Stock Frost
+-- Effect duration: decimal value
+effect_duration    = 4 -- Duration in seconds, -1 = Infinite
+duration_increase  = 0 -- Used on Pontiff's right eye effect
+-- Player basic status: decimal values
+max_hp_rate        = 1.0 -- Removes 30% hp
+max_fp_rate        = 1.0 -- Removes 50% fp
+max_stamina_rate   = 0.5
+-- Resistance reduction on hit: decimal values
+slash_dmg_rate     = 3.0 -- -0% slash dmg resistance
+blow_dmg_rate      = 3.0
+thrust_dmg_rate    = 3.0
+neutral_dmg_rate   = 1.0
+magic_dmg_rate     = 1.0
+fire_dmg_rate      = 1.0
+lightning_dmg_rate = 1.0
+-- Attack power rate: decimal values
+physical_power     = 1.0 -- Increases dmg by %, ex: 1.2 = + 20%
+magic_power        = 1.0
+fire_power         = 1.0
+lightning_power    = 1.0
+-- HP and FP change per effect proc: integer value
+change_hp          = -80 -- Removes 0hp on proc
+change_fp          = 0
+-- Fall damage rate: decimal value
+fall_dmg_rate      = 1.0
+-- Attunement slots: 0 - 255
+attunement_slot    = 0
+-- Status buff: 0 - 255
+vigor_buff         = 0
+attunement_buff    = 0
+endurance_buff     = 0
+vitality_buff      = 0
+strenght_buff      = 0
+dexterity_buff     = 0
+intelligence_buff  = 0
+faith_buff         = 0
+luck_buff          = 0
+-- Build up rate: integer value
+poison_rate        = 0
+frost_rate         = 45 -- Instant frost
+-- Adds an effect on hit: integer value, -1 = disabled
+effect_id          = -1
+-- Weapon blood: integer value
+weapon_blood       = 0
+
+---------------------------------------------------
+[effect_mod:0x886A0BC] -- Random Frost
+-- Effect duration: decimal value
+effect_duration    = 0.75 -- Duration in seconds, -1 = Infinite
+duration_increase  = 0 -- Used on Pontiff's right eye effect
+-- Player basic status: decimal values
+max_hp_rate        = 1.0 -- Removes 30% hp
+max_fp_rate        = 1.0 -- Removes 50% fp
+max_stamina_rate   = 0.5
+-- Resistance reduction on hit: decimal values
+slash_dmg_rate     = 1.0 -- -0% slash dmg resistance
+blow_dmg_rate      = 1.0
+thrust_dmg_rate    = 1.0
+neutral_dmg_rate   = 1.0
+magic_dmg_rate     = 4.0
+fire_dmg_rate      = 1.0
+lightning_dmg_rate = 1.0
+-- Attack power rate: decimal values
+physical_power     = 1.0 -- Increases dmg by %, ex: 1.2 = + 20%
+magic_power        = 1.0
+fire_power         = 1.0
+lightning_power    = 1.0
+-- HP and FP change per effect proc: integer value
+change_hp          = -230 -- Removes 0hp on proc
+change_fp          = 0
+-- Fall damage rate: decimal value
+fall_dmg_rate      = 1.0
+-- Attunement slots: 0 - 255
+attunement_slot    = 0
+-- Status buff: 0 - 255
+vigor_buff         = 0
+attunement_buff    = 0
+endurance_buff     = 0
+vitality_buff      = 0
+strenght_buff      = 0
+dexterity_buff     = 0
+intelligence_buff  = 0
+faith_buff         = 0
+luck_buff          = 0
+-- Build up rate: integer value
+poison_rate        = 0
+frost_rate         = 200 -- Instant frost
+-- Adds an effect on hit: integer value, -1 = disabled
+effect_id          = -1
+-- Weapon blood: integer value
+weapon_blood       = 0
+
+[effect_mod:0x7C0B8AD] -- eleonora
+-- Effect duration: decimal value
+effect_duration    = 0 -- Duration in seconds, -1 = Infinite
+duration_increase  = 0 -- Used on Pontiff's right eye effect
+-- Player basic status: decimal values
+max_hp_rate        = 1.0 -- Removes 30% hp
+max_fp_rate        = 1.0 -- Removes 50% fp
+max_stamina_rate   = 1.0
+-- Resistance reduction on hit: decimal values
+slash_dmg_rate     = 1.0 -- -0% slash dmg resistance
+blow_dmg_rate      = 1.0
+thrust_dmg_rate    = 1.0
+neutral_dmg_rate   = 1.0
+magic_dmg_rate     = 0.0
+fire_dmg_rate      = 1.0
+lightning_dmg_rate = 1.0
+-- Attack power rate: decimal values
+physical_power     = 1.0 -- Increases dmg by %, ex: 1.2 = + 20%
+magic_power        = 1.0
+fire_power         = 1.0
+lightning_power    = 1.0
+-- HP and FP change per effect proc: integer value
+change_hp          = -20 -- Removes 0hp on proc
+change_fp          = 0
+-- Fall damage rate: decimal value
+fall_dmg_rate      = 1.0
+-- Attunement slots: 0 - 255
+attunement_slot    = 0
+-- Status buff: 0 - 255
+vigor_buff         = 0
+attunement_buff    = 0
+endurance_buff     = 0
+vitality_buff      = 0
+strenght_buff      = 0
+dexterity_buff     = 0
+intelligence_buff  = 0
+faith_buff         = 0
+luck_buff          = 0
+-- Build up rate: integer value
+poison_rate        = 0
+frost_rate         = 0 -- Instant frost
+-- Adds an effect on hit: integer value, -1 = disabled
+effect_id          = -1
+-- Weapon blood: integer value
+weapon_blood       = 0
+
+[effect_mod:0x7BFD040] -- handmaiden dagger
+-- Effect duration: decimal value
+effect_duration    = 0 -- Duration in seconds, -1 = Infinite
+duration_increase  = 0 -- Used on Pontiff's right eye effect
+-- Player basic status: decimal values
+max_hp_rate        = 1.0 -- Removes 30% hp
+max_fp_rate        = 1.0 -- Removes 50% fp
+max_stamina_rate   = 1.0
+-- Resistance reduction on hit: decimal values
+slash_dmg_rate     = 1.0 -- -0% slash dmg resistance
+blow_dmg_rate      = 1.0
+thrust_dmg_rate    = 1.0
+neutral_dmg_rate   = 1.0
+magic_dmg_rate     = 0.0
+fire_dmg_rate      = 1.0
+lightning_dmg_rate = 1.0
+-- Attack power rate: decimal values
+physical_power     = 1.0 -- Increases dmg by %, ex: 1.2 = + 20%
+magic_power        = 1.0
+fire_power         = 1.0
+lightning_power    = 1.0
+-- HP and FP change per effect proc: integer value
+change_hp          = 0 -- Removes 0hp on proc
+change_fp          = -5
+-- Fall damage rate: decimal value
+fall_dmg_rate      = 1.0
+-- Attunement slots: 0 - 255
+attunement_slot    = 0
+-- Status buff: 0 - 255
+vigor_buff         = 0
+attunement_buff    = 0
+endurance_buff     = 0
+vitality_buff      = 0
+strenght_buff      = 0
+dexterity_buff     = 0
+intelligence_buff  = 0
+faith_buff         = 0
+luck_buff          = 0
+-- Build up rate: integer value
+poison_rate        = 0
+frost_rate         = 0 -- Instant frost
+-- Adds an effect on hit: integer value, -1 = disabled
+effect_id          = -1
+-- Weapon blood: integer value
+weapon_blood       = 0

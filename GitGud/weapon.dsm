@@ -1,0 +1,344 @@
+[weapon_mod:0xD77440] -- White birch bow
+-- Attack power: 0 - 65535, 65535 = uses original value
+physical_base  = 65534
+magic_base     = 65534
+fire_base      = 65534
+lightning_base = 65534
+dark_base      = 65534
+-- Additional effects: integer values
+effect_1 = -1
+effect_2 = -1
+effect_3 = -1
+-- Attribute bonus: decimal values, -1 = uses original value
+strength_bonus     = 90
+dexterity_bonus    = 90
+intelligence_bonus = 90
+faith_bonus        = 90
+-- Attribute requirement 0 - 255, 255 = uses original value
+strength_req     = 0
+dexterity_req    = 0
+intelligence_req = 0
+faith_req        = 0
+-- Flags: true, false
+luck_bonus     = false
+can_be_buffed  = false
+disable_repair = true
+
+[weapon_mod:0x8B2D4C] --  ghru spear
+-- Attack power: 0 - 65535, 65535 = uses original value
+physical_base  = 132 --*1,8
+magic_base     = 65535 --*2
+fire_base      = 65535
+lightning_base = 65535
+dark_base      = 65535
+-- Additional effects: integer values
+effect_1 = 103555000
+effect_2 = 103555000
+effect_3 = 5100
+-- Attribute bonus: decimal values, -1 = uses original value
+strength_bonus     = -1 -- S: 90
+dexterity_bonus    = -1
+intelligence_bonus = -1
+faith_bonus        = -1
+-- Attribute requirement 0 - 255, 255 = uses original value
+strength_req     = 255 
+dexterity_req    = 255
+intelligence_req = 255
+faith_req        = 255
+-- Flags: true, false
+luck_bonus     = false
+can_be_buffed  = true
+disable_repair = true
+
+[weapon_mod:0x8B2DB0] --  ghru poison spear
+-- Attack power: 0 - 65535, 65535 = uses original value
+physical_base  = 132 --*1,8
+magic_base     = 65535 --*2
+fire_base      = 65535
+lightning_base = 65535
+dark_base      = 65535
+-- Additional effects: integer values
+effect_1 = 3121
+effect_2 = 3121
+effect_3 = 3121
+-- Attribute bonus: decimal values, -1 = uses original value
+strength_bonus     = -1 -- S: 90
+dexterity_bonus    = -1
+intelligence_bonus = -1
+faith_bonus        = -1
+-- Attribute requirement 0 - 255, 255 = uses original value
+strength_req     = 255 
+dexterity_req    = 255
+intelligence_req = 255
+faith_req        = 255
+-- Flags: true, false
+luck_bonus     = false
+can_be_buffed  = true
+disable_repair = true
+
+[weapon_mod:0x6BE130] -- Butchers Knife
+-- Attack power: 0 - 65535, 65535 = uses original value
+physical_base  = 65535
+magic_base     = 65535
+fire_base      = 65535
+lightning_base = 65535
+dark_base      = 65535
+-- Additional effects: integer values
+effect_1 = -1
+effect_2 = -1
+effect_3 = -1
+-- Attribute bonus: decimal values, -1 = uses original value
+strength_bonus     = -1
+dexterity_bonus    = -1
+intelligence_bonus = -1
+faith_bonus        = -1
+-- Attribute requirement 0 - 255, 255 = uses original value
+strength_req     = 255 -- S: 90
+dexterity_req    = 255
+intelligence_req = 255
+faith_req        = 255
+-- Flags: true, false
+luck_bonus     = false
+can_be_buffed  = true
+disable_repair = true
+
+[weapon_mod:0xB71C2C] -- Skilled Whip
+-- Attack power: 0 - 65535, 65535 = uses original value
+physical_base  = 70 --*1,8
+magic_base     = 0 --*2
+fire_base      = 0
+lightning_base = 44
+dark_base      = 0
+-- Additional effects: integer values
+effect_1 = 103730200
+effect_2 = -1
+effect_3 = -1
+-- Attribute bonus: decimal values, -1 = uses original value
+strength_bonus     = -1
+dexterity_bonus    = -1
+intelligence_bonus = -1
+faith_bonus        = 103
+-- Attribute requirement 0 - 255, 255 = uses original value
+strength_req     = 255 -- S: 90
+dexterity_req    = 255
+intelligence_req = 255
+faith_req        = 255
+-- Flags: true, false
+luck_bonus     = false
+can_be_buffed  = true
+disable_repair = true
+
+
+[weapon_mod:0xB7DE50] -- Notched Whip
+-- Attack power: 0 - 65535, 65535 = uses original value
+physical_base  = 65535 --*1,8
+magic_base     = 0 --*2
+fire_base      = 0
+lightning_base = 0
+dark_base      = 0
+-- Additional effects: integer values
+effect_1 = 5100
+effect_2 = 130050200
+effect_3 = 130100790
+-- Attribute bonus: decimal values, -1 = uses original value
+strength_bonus     = -1
+dexterity_bonus    = -1
+intelligence_bonus = -1
+faith_bonus        = -1
+-- Attribute requirement 0 - 255, 255 = uses original value
+strength_req     = 255 -- S: 90
+dexterity_req    = 255
+intelligence_req = 255
+faith_req        = 255
+-- Flags: true, false
+luck_bonus     = false
+can_be_buffed  = true
+disable_repair = true
+
+[weapon_mod:0x4C9960] -- Chaos Blade
+-- Attack power: 0 - 65535, 65535 = uses original value
+physical_base  = 103 --*1,8
+magic_base     = 65535 --*2
+fire_base      = 65535
+lightning_base = 65535
+dark_base      = 65535
+-- Additional effects: integer values
+effect_1 = 130070700
+effect_2 = 129011201
+effect_3 = -1
+-- Attribute bonus: decimal values, -1 = uses original value
+strength_bonus     = -1
+dexterity_bonus    = -1
+intelligence_bonus = -1
+faith_bonus        = -1
+-- Attribute requirement 0 - 255, 255 = uses original value
+strength_req     = 255 -- S: 90
+dexterity_req    = 255
+intelligence_req = 255
+faith_req        = 255
+-- Flags: true, false
+luck_bonus     = false
+can_be_buffed  = true
+disable_repair = true
+
+[weapon_mod:0xB7B740] -- Whichs locks
+-- Attack power: 0 - 65535, 65535 = uses original value
+physical_base  = 65535 --*1,8
+magic_base     = 65535 --*2
+fire_base      = 65535
+lightning_base = 65535
+dark_base      = 65535
+-- Additional effects: integer values
+effect_1 = 102436000
+effect_2 = -1
+effect_3 = 142100810
+-- Attribute bonus: decimal values, -1 = uses original value
+strength_bonus     = -1
+dexterity_bonus    = -1
+intelligence_bonus = -1
+faith_bonus        = -1
+-- Attribute requirement 0 - 255, 255 = uses original value
+strength_req     = 255 -- S: 90
+dexterity_req    = 255
+intelligence_req = 255
+faith_req        = 255
+-- Flags: true, false
+luck_bonus     = false
+can_be_buffed  = true
+disable_repair = true
+
+
+[weapon_mod:0x99D4DC] -- Hollow Corvian Scythe
+-- Attack power: 0 - 65535, 65535 = uses original value
+physical_base  = 52 --*1,8
+magic_base     = 65535 --*2
+fire_base      = 65535
+lightning_base = 65535
+dark_base      = 65535
+-- Additional effects: integer values
+effect_1 = 129011210
+effect_2 = -1
+effect_3 = 129011210
+-- Attribute bonus: decimal values, -1 = uses original value
+strength_bonus     = 79
+dexterity_bonus    = 118
+intelligence_bonus = -1
+faith_bonus        = -1
+-- Attribute requirement 0 - 255, 255 = uses original value
+strength_req     = 255 -- S: 90
+dexterity_req    = 255
+intelligence_req = 255
+faith_req        = 255
+-- Flags: true, false
+luck_bonus     = false
+can_be_buffed  = true
+disable_repair = true
+
+
+
+[weapon_mod:0xF5AAA0] -- Drang Spears
+-- Attack power: 0 - 65535, 65535 = uses original value
+physical_base  = 65535 --*1,8
+magic_base     = 65535 --*2
+fire_base      = 65535
+lightning_base = 65535
+dark_base      = 65535
+-- Additional effects: integer values
+effect_1 = 143030500
+effect_2 = -1
+effect_3 = -1
+-- Attribute bonus: decimal values, -1 = uses original value
+strength_bonus     = -1
+dexterity_bonus    = -1
+intelligence_bonus = -1
+faith_bonus        = -1
+-- Attribute requirement 0 - 255, 255 = uses original value
+strength_req     = 255 -- S: 90
+dexterity_req    = 255
+intelligence_req = 255
+faith_req        = 255
+-- Flags: true, false
+luck_bonus     = false
+can_be_buffed  = true
+disable_repair = true
+
+
+[weapon_mod:0x2E6300] -- Crystal rapier
+-- Attack power: 0 - 65535, 65535 = uses original value
+physical_base  = 15 --*1,8
+magic_base     = 55 --*2
+fire_base      = 65535
+lightning_base = 65535
+dark_base      = 65535
+-- Additional effects: integer values
+effect_1 = 143040700
+effect_2 = -1
+effect_3 = -1
+-- Attribute bonus: decimal values, -1 = uses original value
+strength_bonus     = -1 -- S: 90
+dexterity_bonus    = -1
+intelligence_bonus = 100
+faith_bonus        = -1
+-- Attribute requirement 0 - 255, 255 = uses original value
+strength_req     = 255 
+dexterity_req    = 255
+intelligence_req = 255
+faith_req        = 255
+-- Flags: true, false
+luck_bonus     = false
+can_be_buffed  = true
+disable_repair = true
+
+
+[weapon_mod:0x21DFE0] --  Executioners gr8sword
+-- Attack power: 0 - 65535, 65535 = uses original value
+physical_base  = 65535 --*1,8
+magic_base     = 65535 --*2
+fire_base      = 65535
+lightning_base = 65535
+dark_base      = 65535
+-- Additional effects: integer values
+effect_1 = 130022200
+effect_2 = 130011200
+effect_3 = -1
+-- Attribute bonus: decimal values, -1 = uses original value
+strength_bonus     = -1 -- S: 90
+dexterity_bonus    = -1
+intelligence_bonus = -1
+faith_bonus        = -1
+-- Attribute requirement 0 - 255, 255 = uses original value
+strength_req     = 255 
+dexterity_req    = 255
+intelligence_req = 255
+faith_req        = 255
+-- Flags: true, false
+luck_bonus     = false
+can_be_buffed  = true
+disable_repair = true
+
+
+[weapon_mod:0x8BEC50] --  Arstors spear
+-- Attack power: 0 - 65535, 65535 = uses original value
+physical_base  = 65535 --*1,8
+magic_base     = 65535 --*2
+fire_base      = 65535
+lightning_base = 65535
+dark_base      = 65535
+-- Additional effects: integer values
+effect_1 = 130091700
+effect_2 = 130070701
+effect_3 = -1
+-- Attribute bonus: decimal values, -1 = uses original value
+strength_bonus     = -1 -- S: 90
+dexterity_bonus    = -1
+intelligence_bonus = -1
+faith_bonus        = -1
+-- Attribute requirement 0 - 255, 255 = uses original value
+strength_req     = 255 
+dexterity_req    = 255
+intelligence_req = 255
+faith_req        = 255
+-- Flags: true, false
+luck_bonus     = false
+can_be_buffed  = true
+disable_repair = true
