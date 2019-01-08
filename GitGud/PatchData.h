@@ -20,13 +20,17 @@ typedef struct _BIT
 	}
 } BIT, *PBIT;
 
-typedef struct _PATCH_DATA
+class PatchData
 {
+private:
 	DataT DataType;
 	DWORD dwSize;
+public:
 	BYTE Data[4];
 	BYTE* Address;
-} PATCH_DATA, *PPATCH_DATA;
+	PatchData(DataT DataType);
+	DWORD GetSize();
+};
 
 //class PatchData
 //{

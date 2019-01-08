@@ -103,47 +103,56 @@ bool DSMParser::GetPatchData(const FIELD& Field, PatchData &Data)
 		{
 			case DataT::uint_8:
 			{
-				(*reinterpret_cast<BYTE*>(pBasePtrData + pFieldList[i].dwOffset)) = static_cast<BYTE>(std::stoul(sFieldData, nullptr, 10));
+				DWORD dwTemp = std::stoul(sFieldData, nullptr, bHex ? 16 : 10);
+				if (dwTemp > MAXBYTE)
+					return false;
+				
+				(*reinterpret_cast<BYTE*>(Data.Data)) = static_cast<BYTE>(dwTemp);
 				break;
 			}
 			case DataT::uint_16:
 			{
-				(*reinterpret_cast<WORD*>(pBasePtrData + pFieldList[i].dwOffset)) = static_cast<WORD>(std::stoul(sFieldData, nullptr, 10));
+				(*reinterpret_cast<WORD*>(pBasePtrData + pFieldList[i].dwOffset)) = static_cast<WORD>(std::stoul(sFieldData, nullptr, bHex ? 16 : 10));
 				break;
 			}
 			case DataT::int_16:
 			{
-				(*reinterpret_cast<short*>(pBasePtrData + pFieldList[i].dwOffset)) = static_cast<short>(std::stol(sFieldData, nullptr, 10));
+				(*reinterpret_cast<short*>(pBasePtrData + pFieldList[i].dwOffset)) = static_cast<short>(std::stol(sFieldData, nullptr, bHex ? 16 : 10));
 				break;
 			}
 			case DataT::uint_32:
 			{
-				(*reinterpret_cast<DWORD*>(pBasePtrData + pFieldList[i].dwOffset)) = std::stoul(sFieldData, nullptr, 16);
+				(*reinterpret_cast<DWORD*>(pBasePtrData + pFieldList[i].dwOffset)) = std::stoul(sFieldData, nullptr, bHex ? 16 : 10);
 				break;
 			}
 			case DataT::int_32:
 			{
-				(*reinterpret_cast<int*>(pBasePtrData + pFieldList[i].dwOffset)) = std::stoi(sFieldData);
+				(*reinterpret_cast<int*>(pBasePtrData + pFieldList[i].dwOffset)) = std::stoi(sFieldData, nullptr, bHex ? 16 : 10);
 				break;
 			}
 			case DataT::float_32:
 			{
+				if (bHex)
+					return false;
 				(*reinterpret_cast<FLOAT*>(pBasePtrData + pFieldList[i].dwOffset)) = std::stof(sFieldData);
 				break;
 			}
 			case DataT::bit:
 			{
-
+				if (bHex)
+					return false;
 				break;
 			}
 			case DataT::bool_8:
 			{
+				if (bHex)
+					return false;
 				if (sFieldData.compare("true") == 0)
 					(*reinterpret_cast<BOOL*>(pBasePtrData + pFieldList[i].dwOffset)) = TRUE;
 				else if (sFieldData.compare("false") == 0)
 					(*reinterpret_cast<BOOL*>(pBasePtrData + pFieldList[i].dwOffset)) = FALSE;
 				else
-					return ReturnID::invalid_data;
+					return false;
 				break;
 			}
 			default:
