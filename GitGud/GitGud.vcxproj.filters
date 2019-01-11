@@ -21,22 +21,16 @@
     <ClCompile Include="Memory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DSWeapon.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="DSMParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DSEffect.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DSPlayer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ParamPatcher.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="PatchData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ParamUtil.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DSHack.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -44,31 +38,22 @@
     <ClInclude Include="Memory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DSBase.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DSWeapon.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="DSMParser.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DSEffect.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Color.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DSPlayer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DSStruct.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ParamPatcher.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="PatchData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ParamUtil.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DSHack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -80,6 +65,15 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="weapon.dsm">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="attack.dsm">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="bullet.dsm">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="magic.dsm">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

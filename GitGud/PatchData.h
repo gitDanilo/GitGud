@@ -2,7 +2,7 @@
 
 #include <wtypes.h>
 
-#define MAX_PATCHDATA_SIZE 4
+#define PATCHDATA_SIZE 4
 
 enum class DataT
 {
@@ -18,6 +18,11 @@ typedef struct _BIT
 		this->one = one;
 		this->bit = bit;
 	}
+	_BIT()
+	{
+		this->one = false;
+		this->bit = 0;
+	}
 } BIT, *PBIT;
 
 class PatchData
@@ -28,22 +33,8 @@ private:
 public:
 	BYTE Data[4];
 	BYTE* Address;
-	PatchData(DataT DataType);
+	PatchData();
+	void SetType(DataT DataType);
 	DWORD GetSize();
+	DataT GetType();
 };
-
-//class PatchData
-//{
-//private:
-//	BYTE Data[4];
-//	DataT DataType;
-//	DWORD dwSize;
-//	BYTE* Address;
-//public:
-//	PatchData(const BYTE* pData, DataT DataType, BYTE* Address);
-//	~PatchData();
-//	BYTE* GetData();
-//	DWORD GetDataSize();
-//	BYTE*& GetDataAddress();
-//	DataT GetDataType();
-//};

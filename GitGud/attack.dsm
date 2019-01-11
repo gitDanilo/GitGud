@@ -1,0 +1,18 @@
+[attack_mod:12456000] -- Chaos Bed Vestiges original values
+hit_1_radius    = 0.000000
+hit_2_radius    = 0.000000
+hit_3_radius    = 0.000000
+hit_4_radius    = 0.000000
+knockback_dist  = 0.500000
+hit_stop_time   = 0.000000
+effect_id_1     = 0
+effect_id_2     = 0
+effect_id_3     = 0
+effect_id_4     = 0
+effect_id_5     = 0
+atk_physical    = 0
+atk_magic       = 0
+atk_fire        = 340
+atk_lightning   = 0
+atk_stamina     = 240
+atk_super_armor = 25

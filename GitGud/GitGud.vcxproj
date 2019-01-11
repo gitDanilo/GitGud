@@ -153,29 +153,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DSEffect.cpp" />
+    <ClCompile Include="DSHack.cpp" />
     <ClCompile Include="DSMParser.cpp" />
-    <ClCompile Include="DSPlayer.cpp" />
-    <ClCompile Include="DSWeapon.cpp" />
     <ClCompile Include="GitGud.cpp" />
     <ClCompile Include="Memory.cpp" />
-    <ClCompile Include="ParamPatcher.cpp" />
+    <ClCompile Include="ParamUtil.cpp" />
     <ClCompile Include="PatchData.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Color.h" />
-    <ClInclude Include="DSBase.h" />
-    <ClInclude Include="DSEffect.h" />
+    <ClInclude Include="DSHack.h" />
     <ClInclude Include="DSMParser.h" />
-    <ClInclude Include="DSPlayer.h" />
-    <ClInclude Include="DSStruct.h" />
-    <ClInclude Include="DSWeapon.h" />
     <ClInclude Include="Memory.h" />
-    <ClInclude Include="ParamPatcher.h" />
+    <ClInclude Include="ParamUtil.h" />
     <ClInclude Include="PatchData.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="attack.dsm" />
+    <None Include="bullet.dsm" />
     <None Include="effect.dsm" />
+    <None Include="magic.dsm" />
     <None Include="player.dsm" />
     <None Include="weapon.dsm" />
   </ItemGroup>

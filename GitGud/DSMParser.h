@@ -5,19 +5,11 @@
 #include <vector>
 #include <fstream>
 #include "PatchData.h"
-
-#define DSM_PLAYER_FILE "player.dsm"
-#define DSM_WEAPON_FILE "weapon.dsm"
-#define DSM_EFFECT_FILE "effect.dsm"
-
-enum class FileID
-{
-	player, weapon, effect
-};
+#include "ParamUtil.h"
 
 enum class ReturnID
 {
-	success, end_of_file, read_error, syntax_error, invalid_field, invalid_data
+	success, end_of_file, read_error, syntax_error, invalid_field, invalid_data, invalid_id
 };
 
 typedef struct _FIELD
@@ -28,6 +20,21 @@ typedef struct _FIELD
 	BYTE BitOffset;
 } FIELD, *PFIELD;
 
+typedef struct _STRUCT_FIELD
+{
+	char sName[24];
+	DataT DataType;
+	DWORD dwStructOffset;
+} STRUCT_FIELD, *PSTRUCT_FIELD;
+
+typedef struct _FILE_INF
+{
+	char sName[12];
+	PFIELD pFieldList;
+	PSTRUCT_FIELD pStructFieldList;
+	DWORD dwListSize;
+} FILE_INF, *PFILE_INF;
+
 typedef struct _RET_INF
 {
 	ReturnID RetID;
@@ -35,39 +42,44 @@ typedef struct _RET_INF
 } RET_INF, *PRET_INF;
 
 #define PLAYER_FIELD_LIST_SIZE 9
-static FIELD PlayerFieldList[PLAYER_FIELD_LIST_SIZE] =
+static STRUCT_FIELD PlayerFieldList[PLAYER_FIELD_LIST_SIZE] =
 {
-	{"player_mod"        , DataT::no_type, MAXDWORD, 0},
+	{"player_mod"        , DataT::no_type, MAXDWORD},
 
-	{"invisible"         , DataT::bool_8 , MAXDWORD, 0},
-	{"super_armor"       , DataT::bool_8 , MAXDWORD, 0},
-	{"no_damage"         , DataT::bool_8 , MAXDWORD, 0},
-	{"no_fp_cost"        , DataT::bool_8 , MAXDWORD, 0},
-	{"no_stamina_cost"   , DataT::bool_8 , MAXDWORD, 0},
-	{"no_goods_consume"  , DataT::bool_8 , MAXDWORD, 0},
-	{"no_arrows_consume" , DataT::bool_8 , MAXDWORD, 0},
-	{"backflip_animation", DataT::bool_8 , MAXDWORD, 0}
+	{"invisible"         , DataT::bool_8, offsetof(PLAYER_STRUCT, bInvisible)},
+	{"super_armor"       , DataT::bool_8, offsetof(PLAYER_STRUCT, bSuperArmor)},
+	{"no_damage"         , DataT::bool_8, offsetof(PLAYER_STRUCT, bNoDamage)},
+	{"no_fp_cost"        , DataT::bool_8, offsetof(PLAYER_STRUCT, bNoFPCost)},
+	{"no_stamina_cost"   , DataT::bool_8, offsetof(PLAYER_STRUCT, bNoStaminaConsume)},
+	{"no_goods_consume"  , DataT::bool_8, offsetof(PLAYER_STRUCT, bNoGoodsConsume)},
+	{"no_arrows_consume" , DataT::bool_8, offsetof(PLAYER_STRUCT, bNoArrowsConsume)},
+	{"backflip_animation", DataT::bool_8, offsetof(PLAYER_STRUCT, bBackflipAnimation)}
 };
 
-#define WEAPON_FIELD_LIST_SIZE 20
+#define WEAPON_FIELD_LIST_SIZE 24
 static FIELD WeaponFieldList[WEAPON_FIELD_LIST_SIZE] =
 {
 	{"weapon_mod"        , DataT::uint_32 , MAXDWORD  , 0},
 
 	{"physical_base"     , DataT::uint_16 , 0x000000C4, 0},
 	{"magic_base"        , DataT::uint_16 , 0x000000C6, 0},
-	{"fire_base"         , DataT::uint_16 , 0x000000CA, 0},
-	{"lightning_base"    , DataT::uint_16 , 0x000000CC, 0},
+	{"fire_base"         , DataT::uint_16 , 0x000000C8, 0},
+	{"lightning_base"    , DataT::uint_16 , 0x000000CA, 0},
 	{"dark_base"         , DataT::uint_16 , 0x00000188, 0},
 
-	{"effect_1"          , DataT::int_32  , 0x00000040, 0},
-	{"effect_2"          , DataT::int_32  , 0x00000044, 0},
-	{"effect_3"          , DataT::int_32  , 0x00000048, 0},
+	{"effect_on_hit_1"   , DataT::int_32  , 0x00000040, 0},
+	{"effect_on_hit_2"   , DataT::int_32  , 0x00000044, 0},
+	{"effect_on_hit_3"   , DataT::int_32  , 0x00000048, 0},
+
+	{"effect_on_self_1"  , DataT::int_32  , 0x0000004C, 0},
+	{"effect_on_self_2"  , DataT::int_32  , 0x00000050, 0},
+	{"effect_on_self_3"  , DataT::int_32  , 0x00000054, 0},
 
 	{"strength_bonus"    , DataT::float_32, 0x00000020, 0},
 	{"dexterity_bonus"   , DataT::float_32, 0x00000024, 0},
 	{"intelligence_bonus", DataT::float_32, 0x00000028, 0},
 	{"faith_bonus"       , DataT::float_32, 0x0000002C, 0},
+	{"luck_bonus"        , DataT::float_32, 0x00000198, 0},
 
 	{"strength_req"      , DataT::uint_8  , 0x000000EE, 0},
 	{"dexterity_req"     , DataT::uint_8  , 0x000000EF, 0},
@@ -85,7 +97,7 @@ static FIELD EffectFieldList[EFFECT_FIELD_LIST_SIZE] =
 	{"effect_mod"        , DataT::uint_32 , MAXDWORD  , 0},
 
 	{"effect_duration"   , DataT::float_32, 0x00000008, 0},
-	{"duration_increase" , DataT::float_32, 0x0000000C, 0},
+	{"motion_interval"   , DataT::float_32, 0x0000000C, 0},
 
 	{"max_hp_rate"       , DataT::float_32, 0x00000010, 0},
 	{"max_fp_rate"       , DataT::float_32, 0x00000014, 0},
@@ -129,11 +141,103 @@ static FIELD EffectFieldList[EFFECT_FIELD_LIST_SIZE] =
 	{"weapon_blood"      , DataT::uint_32 , 0x000000D4, 0}
 };
 
+#define ATTACK_FIELD_LIST_SIZE 18
+static FIELD AttackFieldList[ATTACK_FIELD_LIST_SIZE] =
+{
+	{"attack_mod"     , DataT::uint_32 , MAXDWORD  , 0},
+	{"hit_1_radius"   , DataT::float_32, 0x00000000, 0},
+	{"hit_2_radius"   , DataT::float_32, 0x00000004, 0},
+	{"hit_3_radius"   , DataT::float_32, 0x00000008, 0},
+	{"hit_4_radius"   , DataT::float_32, 0x0000000C, 0},
+	{"knockback_dist" , DataT::float_32, 0x00000010, 0},
+	{"hit_stop_time"  , DataT::float_32, 0x00000014, 0},
+	{"effect_id_1"    , DataT::int_32  , 0x00000018, 0},
+	{"effect_id_2"    , DataT::int_32  , 0x0000001C, 0},
+	{"effect_id_3"    , DataT::int_32  , 0x00000020, 0},
+	{"effect_id_4"    , DataT::int_32  , 0x00000024, 0},
+	{"effect_id_5"    , DataT::int_32  , 0x00000028, 0},
+	{"atk_physical"   , DataT::uint_16 , 0x00000050, 0},
+	{"atk_magic"      , DataT::uint_16 , 0x00000052, 0},
+	{"atk_fire"       , DataT::uint_16 , 0x00000054, 0},
+	{"atk_lightning"  , DataT::uint_16 , 0x00000056, 0},
+	{"atk_stamina"    , DataT::uint_16 , 0x00000058, 0},
+	{"atk_super_armor", DataT::uint_16 , 0x0000005E, 0}
+};
+
+#define MAGIC_FIELD_LIST_SIZE 7
+static FIELD MagicFieldList[MAGIC_FIELD_LIST_SIZE] =
+{
+	{"magic_mod"   , DataT::uint_32, MAXDWORD  , 0},
+	{"fp_cost"     , DataT::uint_16, 0x0000000C, 0},
+	{"stamina_cost", DataT::uint_16, 0x0000000E, 0},
+	{"slots_used"  , DataT::uint_8 , 0x0000001D, 0},
+	{"req_int"     , DataT::uint_8 , 0x0000001E, 0},
+	{"req_faith"   , DataT::uint_8 , 0x0000001F, 0},
+	{"cast_anim_id", DataT::uint_8 , 0x00000025, 0}
+};
+
+#define BULLET_FIELD_LIST_SIZE 30
+static FIELD BulletFieldList[BULLET_FIELD_LIST_SIZE] =
+{
+	{"bullet_mod"             , DataT::uint_32 , MAXDWORD  , 0},
+	{"life"                   , DataT::float_32, 0x00000010, 0},
+	{"dist"                   , DataT::float_32, 0x00000014, 0},
+	{"shoot_interval"         , DataT::float_32, 0x00000018, 0},
+	{"gravity_in_range"       , DataT::float_32, 0x0000001C, 0},
+	{"gravity_out_range"      , DataT::float_32, 0x00000020, 0},
+	{"homing_stop_range"      , DataT::float_32, 0x00000024, 0},
+	{"init_vellocity"         , DataT::float_32, 0x00000028, 0},
+	{"accel_in_range"         , DataT::float_32, 0x0000002C, 0},
+	{"accel_out_range"        , DataT::float_32, 0x00000030, 0},
+	{"max_vellocity"          , DataT::float_32, 0x00000034, 0},
+	{"min_vellocity"          , DataT::float_32, 0x00000038, 0},
+	{"accel_time"             , DataT::float_32, 0x0000003C, 0},
+	{"homing_begin_dist"      , DataT::float_32, 0x00000040, 0},
+	{"hit_radius"             , DataT::float_32, 0x00000044, 0},
+	{"hit_radius_max"         , DataT::float_32, 0x00000048, 0},
+	{"spread_time"            , DataT::float_32, 0x0000004C, 0},
+	{"exp_delay"              , DataT::float_32, 0x00000050, 0},
+	{"homing_offset_range"    , DataT::float_32, 0x00000054, 0},
+	{"dmg_hit_record_lifetime", DataT::float_32, 0x00000058, 0},
+	{"effect_id_for_shooter"  , DataT::float_32, 0x00000060, 0},
+	{"hit_bullet_id"          , DataT::float_32, 0x00000068, 0},
+	{"effect_id_1"            , DataT::int_32  , 0x0000006C, 0},
+	{"effect_id_2"            , DataT::int_32  , 0x00000070, 0},
+	{"effect_id_3"            , DataT::int_32  , 0x00000074, 0},
+	{"effect_id_4"            , DataT::int_32  , 0x00000078, 0},
+	{"effect_id_5"            , DataT::int_32  , 0x0000007C, 0},
+	{"num_shoot"              , DataT::uint_16 , 0x00000080, 0},
+	{"homing_angle"           , DataT::uint_16 , 0x00000082, 0},
+	{"shoot_angle"            , DataT::uint_16 , 0x00000084, 0}
+};
+
+#define FILEINF_LIST_SIZE 6
+static FILE_INF FileList[FILEINF_LIST_SIZE] =
+{
+	{"player.dsm", nullptr, PlayerFieldList, PLAYER_FIELD_LIST_SIZE},
+	{"weapon.dsm", WeaponFieldList, nullptr, WEAPON_FIELD_LIST_SIZE},
+	{"effect.dsm", EffectFieldList, nullptr, EFFECT_FIELD_LIST_SIZE},
+	{"attack.dsm", AttackFieldList, nullptr, ATTACK_FIELD_LIST_SIZE},
+	{"magic.dsm" , MagicFieldList , nullptr, MAGIC_FIELD_LIST_SIZE },
+	{"bullet.dsm", BulletFieldList, nullptr, BULLET_FIELD_LIST_SIZE}
+};
+
+namespace FileID
+{
+	enum ID: DWORD
+	{
+		player, weapon, effect, attack, magic, bullet,
+
+		_first = player,
+		_last = bullet,
+	};
+}
+
 class DSMParser
 {
 private:
 	std::ifstream inStream;
-	FileID File;
+	DWORD dwFileID;
 	DWORD dwLineCount;
 	bool bHeader;
 	std::size_t lPos;
@@ -146,10 +250,11 @@ private:
 	bool ReadNextLine();
 	bool GetNextField();
 	RET_INF SetRetInf(ReturnID RetID);
-	bool GetPatchData(const FIELD& Field, PatchData &Data);
+	bool GetPatchData(const FIELD& Field, bool bHex, PatchData &Patch);
 public:
-	DSMParser(FileID File);
+	DSMParser(DWORD dwFileID);
 	~DSMParser();
-	RET_INF GetFirstDataStruct(PVOID ptrData);
-	RET_INF GetNextDataStruct(PVOID ptrData);
+	void SetFile(DWORD dwFileID);
+	RET_INF GetPatchDataList(const PARAM_CLASS &Param, std::vector<PatchData> &PatchDataList);
+	RET_INF GetStruct(BYTE* pStruct);
 };
