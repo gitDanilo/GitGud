@@ -2,7 +2,7 @@
 invisible         = false
 super_armor       = true
 no_damage         = true
-no_fp_cost        = true
+no_fp_cost        = false
 no_stamina_cost   = true
 no_goods_consume  = true
 no_arrows_consume = true

@@ -46,13 +46,13 @@ static STRUCT_FIELD PlayerFieldList[PLAYER_FIELD_LIST_SIZE] =
 {
 	{"player_mod"        , DataT::no_type, MAXDWORD},
 
-	{"invisible"         , DataT::bool_8, offsetof(PLAYER_STRUCT, bInvisible)},
-	{"super_armor"       , DataT::bool_8, offsetof(PLAYER_STRUCT, bSuperArmor)},
-	{"no_damage"         , DataT::bool_8, offsetof(PLAYER_STRUCT, bNoDamage)},
-	{"no_fp_cost"        , DataT::bool_8, offsetof(PLAYER_STRUCT, bNoFPCost)},
-	{"no_stamina_cost"   , DataT::bool_8, offsetof(PLAYER_STRUCT, bNoStaminaConsume)},
-	{"no_goods_consume"  , DataT::bool_8, offsetof(PLAYER_STRUCT, bNoGoodsConsume)},
-	{"no_arrows_consume" , DataT::bool_8, offsetof(PLAYER_STRUCT, bNoArrowsConsume)},
+	{"invisible"         , DataT::bool_8, offsetof(PLAYER_STRUCT, bInvisible)        },
+	{"super_armor"       , DataT::bool_8, offsetof(PLAYER_STRUCT, bSuperArmor)       },
+	{"no_damage"         , DataT::bool_8, offsetof(PLAYER_STRUCT, bNoDamage)         },
+	{"no_fp_cost"        , DataT::bool_8, offsetof(PLAYER_STRUCT, bNoFPCost)         },
+	{"no_stamina_cost"   , DataT::bool_8, offsetof(PLAYER_STRUCT, bNoStaminaConsume) },
+	{"no_goods_consume"  , DataT::bool_8, offsetof(PLAYER_STRUCT, bNoGoodsConsume)   },
+	{"no_arrows_consume" , DataT::bool_8, offsetof(PLAYER_STRUCT, bNoArrowsConsume)  },
 	{"backflip_animation", DataT::bool_8, offsetof(PLAYER_STRUCT, bBackflipAnimation)}
 };
 
@@ -91,7 +91,7 @@ static FIELD WeaponFieldList[WEAPON_FIELD_LIST_SIZE] =
 	{"disable_repair"    , DataT::bit     , 0x00000103, 3}
 };
 
-#define EFFECT_FIELD_LIST_SIZE 36
+#define EFFECT_FIELD_LIST_SIZE 37
 static FIELD EffectFieldList[EFFECT_FIELD_LIST_SIZE] =
 {
 	{"effect_mod"        , DataT::uint_32 , MAXDWORD  , 0},
@@ -142,29 +142,44 @@ static FIELD EffectFieldList[EFFECT_FIELD_LIST_SIZE] =
 
 	{"soul_rate"         , DataT::float_32, 0x000000E0, 0},
 	{"drop_rate"         , DataT::float_32, 0x00000104, 0},
+
+	{"effect_on_hit"     , DataT::int_32  , 0x0000012C, 0}
 };
 
-#define ATTACK_FIELD_LIST_SIZE 18
+#define ATTACK_FIELD_LIST_SIZE 28
 static FIELD AttackFieldList[ATTACK_FIELD_LIST_SIZE] =
 {
-	{"attack_mod"     , DataT::uint_32 , MAXDWORD  , 0},
-	{"hit_1_radius"   , DataT::float_32, 0x00000000, 0},
-	{"hit_2_radius"   , DataT::float_32, 0x00000004, 0},
-	{"hit_3_radius"   , DataT::float_32, 0x00000008, 0},
-	{"hit_4_radius"   , DataT::float_32, 0x0000000C, 0},
-	{"knockback_dist" , DataT::float_32, 0x00000010, 0},
-	{"hit_stop_time"  , DataT::float_32, 0x00000014, 0},
-	{"effect_id_1"    , DataT::int_32  , 0x00000018, 0},
-	{"effect_id_2"    , DataT::int_32  , 0x0000001C, 0},
-	{"effect_id_3"    , DataT::int_32  , 0x00000020, 0},
-	{"effect_id_4"    , DataT::int_32  , 0x00000024, 0},
-	{"effect_id_5"    , DataT::int_32  , 0x00000028, 0},
-	{"atk_physical"   , DataT::uint_16 , 0x00000050, 0},
-	{"atk_magic"      , DataT::uint_16 , 0x00000052, 0},
-	{"atk_fire"       , DataT::uint_16 , 0x00000054, 0},
-	{"atk_lightning"  , DataT::uint_16 , 0x00000056, 0},
-	{"atk_stamina"    , DataT::uint_16 , 0x00000058, 0},
-	{"atk_super_armor", DataT::uint_16 , 0x0000005E, 0}
+	{"attack_mod"         , DataT::uint_32 , MAXDWORD  , 0},
+	{"hit_1_radius"       , DataT::float_32, 0x00000000, 0},
+	{"hit_2_radius"       , DataT::float_32, 0x00000004, 0},
+	{"hit_3_radius"       , DataT::float_32, 0x00000008, 0},
+	{"hit_4_radius"       , DataT::float_32, 0x0000000C, 0},
+	{"knockback_dist"     , DataT::float_32, 0x00000010, 0},
+	{"hit_stop_time"      , DataT::float_32, 0x00000014, 0},
+	{"effect_id_1"        , DataT::int_32  , 0x00000018, 0},
+	{"effect_id_2"        , DataT::int_32  , 0x0000001C, 0},
+	{"effect_id_3"        , DataT::int_32  , 0x00000020, 0},
+	{"effect_id_4"        , DataT::int_32  , 0x00000024, 0},
+	{"effect_id_5"        , DataT::int_32  , 0x00000028, 0},
+
+	{"atk_phys_mod"       , DataT::uint_16 , 0x0000003E, 0},
+	{"atk_magic_mod"      , DataT::uint_16 , 0x00000040, 0},
+	{"atk_fire_mod"       , DataT::uint_16 , 0x00000042, 0},
+	{"atk_lightning_mod"  , DataT::uint_16 , 0x00000044, 0},
+	{"atk_stamina_mod"    , DataT::uint_16 , 0x00000046, 0},
+	{"guard_atk_rate_mod" , DataT::uint_16 , 0x00000048, 0},
+	{"guard_break_mod"    , DataT::uint_16 , 0x0000004A, 0},
+	{"atk_super_armor_mod", DataT::uint_16 , 0x0000004E, 0},
+
+	{"atk_physical"       , DataT::uint_16 , 0x00000050, 0},
+	{"atk_magic"          , DataT::uint_16 , 0x00000052, 0},
+	{"atk_fire"           , DataT::uint_16 , 0x00000054, 0},
+	{"atk_lightning"      , DataT::uint_16 , 0x00000056, 0},
+	{"atk_stamina"        , DataT::uint_16 , 0x00000058, 0},
+
+	{"guard_atk_rate"     , DataT::uint_16 , 0x0000005A, 0},
+	{"guard_break"        , DataT::uint_16 , 0x0000005C, 0},
+	{"atk_super_armor"    , DataT::uint_16 , 0x0000005E, 0}
 };
 
 #define MAGIC_FIELD_LIST_SIZE 7
