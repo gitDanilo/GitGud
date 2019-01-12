@@ -91,7 +91,7 @@ static FIELD WeaponFieldList[WEAPON_FIELD_LIST_SIZE] =
 	{"disable_repair"    , DataT::bit     , 0x00000103, 3}
 };
 
-#define EFFECT_FIELD_LIST_SIZE 34
+#define EFFECT_FIELD_LIST_SIZE 36
 static FIELD EffectFieldList[EFFECT_FIELD_LIST_SIZE] =
 {
 	{"effect_mod"        , DataT::uint_32 , MAXDWORD  , 0},
@@ -138,7 +138,10 @@ static FIELD EffectFieldList[EFFECT_FIELD_LIST_SIZE] =
 
 	{"effect_id"         , DataT::int_32  , 0x00000128, 0},
 
-	{"weapon_blood"      , DataT::uint_32 , 0x000000D4, 0}
+	{"weapon_blood"      , DataT::uint_32 , 0x000000D4, 0},
+
+	{"soul_rate"         , DataT::float_32, 0x000000E0, 0},
+	{"drop_rate"         , DataT::float_32, 0x00000104, 0},
 };
 
 #define ATTACK_FIELD_LIST_SIZE 18
