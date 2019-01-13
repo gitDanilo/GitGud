@@ -6,5 +6,5 @@ no_fp_cost         = false
 no_stamina_cost    = false
 no_goods_consume   = false
 no_arrows_consume  = true
-backflip_animation = true
+backflip_animation = false
 edit_npc_stats     = true -- Edit effect with ID: 0x1B58

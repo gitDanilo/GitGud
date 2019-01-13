@@ -144,7 +144,7 @@ namespace ParamID
 
 enum class ActionID
 {
-	patch_all, patch_player, toggle_gravity, toggle_ai, print_ds_struct,
+	patch_all, patch_player, toggle_gravity, toggle_ai, print_ds_struct, exit
 };
 
 enum class PatchID
@@ -296,8 +296,7 @@ LRESULT CALLBACK KeyboardHookProc(int nCode, WPARAM wParam, LPARAM lParam)
 			}
 			case VK_F12:
 			{
-				std::cout << clr::white << "Exiting..." << std::endl;
-				PostQuitMessage(0);
+				OnKBEvent2(GetAsyncKeyState(VK_SHIFT), ActionID::exit);
 				break;
 			}
 		}
@@ -604,6 +603,22 @@ void OnKBEvent2(bool bShift, ActionID Action)
 			}
 			break;
 		}
+		case ActionID::exit:
+		{
+			if (bShift == false)
+			{
+				ParamUtil::PatchMemory(WeaponPatchInf.PatchBackupList);
+				ParamUtil::PatchMemory(EffectPatchInf.PatchBackupList);
+				ParamUtil::PatchMemory(AttackPatchInf.PatchBackupList);
+				ParamUtil::PatchMemory(MagicPatchInf.PatchBackupList);
+				ParamUtil::PatchMemory(BulletPatchInf.PatchBackupList);
+				ParamUtil::PatchMemory(PlayerDataBackup, BaseA, BaseB, BaseC, ParamList[ParamID::sp_effect_param]);
+				std::cout << clr::white << "All backup data restored." << std::endl;
+			}
+			std::cout << clr::white << "Exiting..." << std::endl;
+			PostQuitMessage(0);
+			break;
+		}
 	}
 
 	if (bFail == true && pProcMem->IsProcessRunning() == false)
@@ -774,16 +789,17 @@ void PrintInputOptions()
 	std::cout << clr::cyan << "<    F6    >" << clr::white << " - Load flags from "              << clr::cyan << FileList[FileID::player].sName << clr::white << '.' << std::endl;
 	std::cout << clr::pink << "<SHIFT + F6>" << clr::white << " - Disable flags from "           << clr::pink << FileList[FileID::player].sName << clr::white << '.' << std::endl;
 	
-	std::cout << clr::cyan << "<    F7    >" << clr::white << " - Toggle AI."                    << std::endl;
+	std::cout << clr::cyan << "<    F7    >" << clr::white << " - Toggle AI."                        << std::endl;
 
-	std::cout << clr::pink << "<    F8    >" << clr::white << " - Toggle gravity."               << std::endl;
-	std::cout << clr::cyan << "<SHIFT + F8>" << clr::white << " - Increment player Z pos."       << std::endl;
+	std::cout << clr::pink << "<    F8    >" << clr::white << " - Toggle gravity."                   << std::endl;
+	std::cout << clr::cyan << "<SHIFT + F8>" << clr::white << " - Increment player Z pos."           << std::endl;
 	
-	std::cout << clr::pink << "<    F9    >" << clr::white << " - Load all modifications files." << std::endl;
+	std::cout << clr::pink << "<    F9    >" << clr::white << " - Load all modifications files."     << std::endl;
 
-	std::cout << clr::cyan << "<   F10    >" << clr::white << " - Read struct data."             << std::endl;
+	std::cout << clr::cyan << "<   F10    >" << clr::white << " - Read struct data."                 << std::endl;
 	
-	std::cout << clr::pink << "<   F12    >" << clr::white << " - Exit."                         << std::endl;
+	std::cout << clr::pink << "<   F12    >" << clr::white << " - Restore all backup data and exit." << std::endl;
+	std::cout << clr::cyan << "<SHIFT +F12>" << clr::white << " - Exit."                             << std::endl;
 	
 	std::cout << std::endl << clr::cyan << "Waiting for input..." << std::endl << std::endl;
 }
