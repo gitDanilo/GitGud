@@ -39,6 +39,8 @@ typedef struct _PLAYER_STRUCT
 	bool bNoGoodsConsume;
 	bool bNoArrowsConsume;
 	bool bBackflipAnimation;
+	bool bNPCRedEyeVFX;
+	bool bEditNPCStat;
 } PLAYER_STRUCT, *PPLAYER_STRUCT;
 
 static const BYTE AOB_ROLL[] =
@@ -51,9 +53,9 @@ static const BYTE AOB_ROLL_PATCH[] =
 	0x90, 0x90, 0x90, 0x90, 0x90, 0x90
 };
 
-#define OFFSETLIST_SIZE 5
+#define OFFSET_LIST_SIZE 5
 #define MAX_OFFSET_COUNT 5
-static DWORD OffsetList[OFFSETLIST_SIZE][MAX_OFFSET_COUNT] =
+static DWORD OffsetList[OFFSET_LIST_SIZE][MAX_OFFSET_COUNT] =
 {
 	{0x00000080, 0x00001F90, 0x00000018, 0x00000008, 0x00002098}, // Invisible
 	{0x00000080, 0x00001F90, 0x00000040, 0x00000010, 0xFFFFFFFF}, // Super Armor
@@ -70,16 +72,23 @@ namespace OffsetID
 		super_armor,
 		player_basic_status,
 		no_goods_consume,
-		backflip_animation,
+		backflip_animation
 	};
 }
+
+#define EFFECT_ID_OFFSET 0x128
+#define NPCEFFECT_LIST_SIZE 20
+static DWORD NPCEffectList[NPCEFFECT_LIST_SIZE] =
+{
+	7400, 7410, 7420, 7430, 7440, 7445, 7460, 7470, 7480, 7490, 7492, 7493, 7495, 7520, 7530, 7535, 7540, 7550, 7560, 7570
+};
 
 namespace ParamUtil
 {
 	bool WC2MB(LPWCH wcString, int wcCount, LPCH mbString, int mbMaxSize);
 	BYTE* ReadMultiLvlPtr(BYTE* BaseAddr, DWORD dwID);
 	bool PatchBin(PatchData &BinPatch);
-	bool PatchMemory(const PLAYER_STRUCT &PlayerData, BYTE* BaseA, BYTE* BaseB, BYTE* BaseC);
+	bool PatchMemory(const PLAYER_STRUCT &PlayerData, BYTE* BaseA, BYTE* BaseB, BYTE* BaseC, const PARAM_CLASS &EffectParam);
 	bool PatchMemory(std::vector<PatchData> &PatchList);
 	bool PatchMemoryWithBackup(PATCH_INF &PatchInf);
 	BYTE* GetIDAddr(const PARAM_CLASS &ParamClass, DWORD dwID);

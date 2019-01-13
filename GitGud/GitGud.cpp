@@ -456,7 +456,7 @@ void OnKBEvent(bool bShift, PatchID Patch)
 			pPatchInf = &WeaponPatchInf;
 			break;
 		case PatchID::patch_effect:
-			dwFileID = FileID::weapon;
+			dwFileID = FileID::effect;
 			pPatchInf = &EffectPatchInf;
 			break;
 		case PatchID::patch_attack:
@@ -534,7 +534,7 @@ void OnKBEvent2(bool bShift, ActionID Action)
 		{
 			if (bShift == false)
 			{
-				if (LoadPatchData(FileID::player) && ParamUtil::PatchMemory(PlayerData, BaseA, BaseB, BaseC))
+				if (LoadPatchData(FileID::player) && ParamUtil::PatchMemory(PlayerData, BaseA, BaseB, BaseC, ParamList[ParamID::sp_effect_param]))
 				{
 					SuccessBeep();
 				}
@@ -546,7 +546,7 @@ void OnKBEvent2(bool bShift, ActionID Action)
 			}
 			else
 			{
-				if (ParamUtil::PatchMemory(PlayerDataBackup, BaseA, BaseB, BaseC))
+				if (ParamUtil::PatchMemory(PlayerDataBackup, BaseA, BaseB, BaseC, ParamList[ParamID::sp_effect_param]))
 				{
 					SuccessBeep2();
 				}

@@ -41,7 +41,7 @@ typedef struct _RET_INF
 	DWORD dwLine;
 } RET_INF, *PRET_INF;
 
-#define PLAYER_FIELD_LIST_SIZE 9
+#define PLAYER_FIELD_LIST_SIZE 10
 static STRUCT_FIELD PlayerFieldList[PLAYER_FIELD_LIST_SIZE] =
 {
 	{"player_mod"        , DataT::no_type, MAXDWORD},
@@ -53,7 +53,8 @@ static STRUCT_FIELD PlayerFieldList[PLAYER_FIELD_LIST_SIZE] =
 	{"no_stamina_cost"   , DataT::bool_8, offsetof(PLAYER_STRUCT, bNoStaminaConsume) },
 	{"no_goods_consume"  , DataT::bool_8, offsetof(PLAYER_STRUCT, bNoGoodsConsume)   },
 	{"no_arrows_consume" , DataT::bool_8, offsetof(PLAYER_STRUCT, bNoArrowsConsume)  },
-	{"backflip_animation", DataT::bool_8, offsetof(PLAYER_STRUCT, bBackflipAnimation)}
+	{"backflip_animation", DataT::bool_8, offsetof(PLAYER_STRUCT, bBackflipAnimation)},
+	{"edit_npc_stats"    , DataT::bool_8, offsetof(PLAYER_STRUCT, bEditNPCStat)      }
 };
 
 #define WEAPON_FIELD_LIST_SIZE 24
@@ -91,59 +92,74 @@ static FIELD WeaponFieldList[WEAPON_FIELD_LIST_SIZE] =
 	{"disable_repair"    , DataT::bit     , 0x00000103, 3}
 };
 
-#define EFFECT_FIELD_LIST_SIZE 37
+#define EFFECT_FIELD_LIST_SIZE 49
 static FIELD EffectFieldList[EFFECT_FIELD_LIST_SIZE] =
 {
-	{"effect_mod"        , DataT::uint_32 , MAXDWORD  , 0},
+	{"effect_mod"          , DataT::uint_32 , MAXDWORD  , 0},
 
-	{"effect_duration"   , DataT::float_32, 0x00000008, 0},
-	{"motion_interval"   , DataT::float_32, 0x0000000C, 0},
+	{"effect_duration"     , DataT::float_32, 0x00000008, 0},
+	{"motion_interval"     , DataT::float_32, 0x0000000C, 0},
 
-	{"max_hp_rate"       , DataT::float_32, 0x00000010, 0},
-	{"max_fp_rate"       , DataT::float_32, 0x00000014, 0},
-	{"max_stamina_rate"  , DataT::float_32, 0x00000018, 0},
+	{"max_hp_rate"         , DataT::float_32, 0x00000010, 0},
+	{"max_fp_rate"         , DataT::float_32, 0x00000014, 0},
+	{"max_stamina_rate"    , DataT::float_32, 0x00000018, 0},
 
-	{"slash_dmg_rate"    , DataT::float_32, 0x0000001C, 0},
-	{"blow_dmg_rate"     , DataT::float_32, 0x00000020, 0},
-	{"thrust_dmg_rate"   , DataT::float_32, 0x00000024, 0},
-	{"neutral_dmg_rate"  , DataT::float_32, 0x00000028, 0},
-	{"magic_dmg_rate"    , DataT::float_32, 0x0000002C, 0},
-	{"fire_dmg_rate"     , DataT::float_32, 0x00000030, 0},
-	{"lightning_dmg_rate", DataT::float_32, 0x00000034, 0},
+	{"slash_dmg_rate"      , DataT::float_32, 0x0000001C, 0},
+	{"blow_dmg_rate"       , DataT::float_32, 0x00000020, 0},
+	{"thrust_dmg_rate"     , DataT::float_32, 0x00000024, 0},
+	{"neutral_dmg_rate"    , DataT::float_32, 0x00000028, 0},
+	{"magic_dmg_rate"      , DataT::float_32, 0x0000002C, 0},
+	{"fire_dmg_rate"       , DataT::float_32, 0x00000030, 0},
+	{"lightning_dmg_rate"  , DataT::float_32, 0x00000034, 0},
+	// Power rate
+	{"physical_power_rate" , DataT::float_32, 0x00000048, 0},
+	{"magic_power_rate"    , DataT::float_32, 0x0000004C, 0},
+	{"fire_power_rate"     , DataT::float_32, 0x00000050, 0},
+	{"lightning_power_rate", DataT::float_32, 0x00000054, 0},
+	// Power
+	{"physical_power"      , DataT::uint_32 , 0x00000058, 0},
+	{"magic_power"         , DataT::uint_32 , 0x0000005C, 0},
+	{"fire_power"          , DataT::uint_32 , 0x00000060, 0},
+	{"lightning_power"     , DataT::uint_32 , 0x00000064, 0},
+	// Defense rate
+	{"physical_def_rate"   , DataT::float_32, 0x00000068, 0},
+	{"magic_def_rate"      , DataT::float_32, 0x0000006C, 0},
+	{"fire_def_rate"       , DataT::float_32, 0x00000070, 0},
+	{"lightning_def_rate"  , DataT::float_32, 0x00000074, 0},
+	// Defense
+	{"physical_def"        , DataT::uint_32 , 0x00000078, 0},
+	{"magic_def"           , DataT::uint_32 , 0x0000007C, 0},
+	{"fire_def"            , DataT::uint_32 , 0x00000080, 0},
+	{"lightning_def"       , DataT::uint_32 , 0x00000084, 0},
 
-	{"physical_power"    , DataT::float_32, 0x00000048, 0},
-	{"magic_power"       , DataT::float_32, 0x0000004C, 0},
-	{"fire_power"        , DataT::float_32, 0x00000050, 0},
-	{"lightning_power"   , DataT::float_32, 0x00000054, 0},
+	{"change_hp"           , DataT::int_32  , 0x000000A0, 0},
+	{"change_fp"           , DataT::int_32  , 0x000000A8, 0},
 
-	{"change_hp"         , DataT::int_32  , 0x000000A0, 0},
-	{"change_fp"         , DataT::int_32  , 0x000000A8, 0},
+	{"fall_dmg_rate"       , DataT::float_32, 0x000000DC, 0},
 
-	{"fall_dmg_rate"     , DataT::float_32, 0x000000DC, 0},
+	{"attunement_slot"     , DataT::uint_8  , 0x00000143, 0},
 
-	{"attunement_slot"   , DataT::uint_8  , 0x00000143, 0},
+	{"vigor_buff"          , DataT::uint_8  , 0x00000308, 0},
+	{"attunement_buff"     , DataT::uint_8  , 0x00000309, 0},
+	{"endurance_buff"      , DataT::uint_8  , 0x0000030A, 0},
+	{"vitality_buff"       , DataT::uint_8  , 0x0000030B, 0},
+	{"strenght_buff"       , DataT::uint_8  , 0x0000030C, 0},
+	{"dexterity_buff"      , DataT::uint_8  , 0x0000030D, 0},
+	{"intelligence_buff"   , DataT::uint_8  , 0x0000030E, 0},
+	{"faith_buff"          , DataT::uint_8  , 0x0000030F, 0},
+	{"luck_buff"           , DataT::uint_8  , 0x00000310, 0},
 
-	{"vigor_buff"        , DataT::uint_8  , 0x00000308, 0},
-	{"attunement_buff"   , DataT::uint_8  , 0x00000309, 0},
-	{"endurance_buff"    , DataT::uint_8  , 0x0000030A, 0},
-	{"vitality_buff"     , DataT::uint_8  , 0x0000030B, 0},
-	{"strenght_buff"     , DataT::uint_8  , 0x0000030C, 0},
-	{"dexterity_buff"    , DataT::uint_8  , 0x0000030D, 0},
-	{"intelligence_buff" , DataT::uint_8  , 0x0000030E, 0},
-	{"faith_buff"        , DataT::uint_8  , 0x0000030F, 0},
-	{"luck_buff"         , DataT::uint_8  , 0x00000310, 0},
+	{"poison_rate"         , DataT::uint_32 , 0x000000CC, 0},
+	{"frost_rate"          , DataT::uint_32 , 0x000001AC, 0},
 
-	{"poison_rate"       , DataT::uint_32 , 0x000000CC, 0},
-	{"frost_rate"        , DataT::uint_32 , 0x000001AC, 0},
+	{"effect_id"           , DataT::int_32  , 0x00000128, 0},
 
-	{"effect_id"         , DataT::int_32  , 0x00000128, 0},
+	{"weapon_blood"        , DataT::uint_32 , 0x000000D4, 0},
 
-	{"weapon_blood"      , DataT::uint_32 , 0x000000D4, 0},
+	{"soul_rate"           , DataT::float_32, 0x000000E0, 0},
+	{"drop_rate"           , DataT::float_32, 0x00000104, 0},
 
-	{"soul_rate"         , DataT::float_32, 0x000000E0, 0},
-	{"drop_rate"         , DataT::float_32, 0x00000104, 0},
-
-	{"effect_on_hit"     , DataT::int_32  , 0x0000012C, 0}
+	{"effect_on_hit"       , DataT::int_32  , 0x0000012C, 0}
 };
 
 #define ATTACK_FIELD_LIST_SIZE 28
@@ -217,8 +233,8 @@ static FIELD BulletFieldList[BULLET_FIELD_LIST_SIZE] =
 	{"exp_delay"              , DataT::float_32, 0x00000050, 0},
 	{"homing_offset_range"    , DataT::float_32, 0x00000054, 0},
 	{"dmg_hit_record_lifetime", DataT::float_32, 0x00000058, 0},
-	{"effect_id_for_shooter"  , DataT::float_32, 0x00000060, 0},
-	{"hit_bullet_id"          , DataT::float_32, 0x00000068, 0},
+	{"effect_id_for_shooter"  , DataT::int_32  , 0x00000060, 0},
+	{"hit_bullet_id"          , DataT::int_32  , 0x00000068, 0},
 	{"effect_id_1"            , DataT::int_32  , 0x0000006C, 0},
 	{"effect_id_2"            , DataT::int_32  , 0x00000070, 0},
 	{"effect_id_3"            , DataT::int_32  , 0x00000074, 0},

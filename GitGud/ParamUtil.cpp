@@ -53,7 +53,7 @@ bool ParamUtil::PatchBin(PatchData &BinPatch)
 	return true;
 }
 
-bool ParamUtil::PatchMemory(const PLAYER_STRUCT &PlayerData, BYTE* BaseA, BYTE* BaseB, BYTE* BaseC)
+bool ParamUtil::PatchMemory(const PLAYER_STRUCT &PlayerData, BYTE* BaseA, BYTE* BaseB, BYTE* BaseC, const PARAM_CLASS &EffectParam)
 {
 	BYTE byte;
 	int int_32;
@@ -148,7 +148,15 @@ bool ParamUtil::PatchMemory(const PLAYER_STRUCT &PlayerData, BYTE* BaseA, BYTE* 
 		if (pProcMem->WriteProcMem(Addr, int_32) == false)
 			return false;
 	}
-	
+
+	int_32 = PlayerData.bEditNPCStat ? 0x00001B58 : 0xFFFFFFFF;
+	for (int i = 0; i < NPCEFFECT_LIST_SIZE; ++i)
+	{
+		Addr = GetIDAddr(EffectParam, NPCEffectList[i]);
+		if (pProcMem->WriteProcMem(Addr + EFFECT_ID_OFFSET, int_32) == false)
+			return false;
+	}
+
 	return true;
 }
 

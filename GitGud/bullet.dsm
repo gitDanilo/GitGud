@@ -1,4 +1,4 @@
-[bullet_mod:11604000] -- Chaos Bed Vestiges original values
+[bullet_mod:0xB11020] -- Chaos Bed Vestiges original values
 life                    = 3.000000
 dist                    = 6.000000
 shoot_interval          = 0.000000
@@ -19,7 +19,7 @@ exp_delay               = 0.000000
 homing_offset_range     = 0.000000
 dmg_hit_record_lifetime = 0.000000
 effect_id_for_shooter   = 0
-hit_bullet_id           = @
+hit_bullet_id           = -1
 effect_id_1             = 0
 effect_id_2             = 0
 effect_id_3             = 0

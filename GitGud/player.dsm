@@ -1,9 +1,10 @@
 [player_mod]
-invisible         = false
-super_armor       = true
-no_damage         = true
-no_fp_cost        = false
-no_stamina_cost   = true
-no_goods_consume  = true
-no_arrows_consume = true
-backflip_animation= true
+invisible          = false
+super_armor        = false
+no_damage          = false
+no_fp_cost         = false
+no_stamina_cost    = false
+no_goods_consume   = false
+no_arrows_consume  = true
+backflip_animation = true
+edit_npc_stats     = true -- Edit effect with ID: 0x1B58
