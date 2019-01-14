@@ -1,7 +1,7 @@
 [effect_mod:0x1B58] -- Edit base game difficulty
 effect_duration      = @
 motion_interval      = @
-max_hp_rate          = 1.0 -- HP x2
+max_hp_rate          = 1.6 -- 60% more HP
 max_fp_rate          = @
 max_stamina_rate     = 1.2 -- 20% more stam
 slash_dmg_rate       = @
@@ -19,10 +19,10 @@ physical_power       = @
 magic_power          = @
 fire_power           = @
 lightning_power      = @
-physical_def_rate    = 1.1 -- 10% more resistance
-magic_def_rate       = 1.1
-fire_def_rate        = 1.1
-lightning_def_rate   = 1.1
+physical_def_rate    = 1.08 -- 8% more resistance
+magic_def_rate       = 1.08
+fire_def_rate        = 1.08
+lightning_def_rate   = 1.08
 physical_def         = @
 magic_def            = @
 fire_def             = @

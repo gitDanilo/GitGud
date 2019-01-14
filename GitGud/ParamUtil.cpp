@@ -192,6 +192,11 @@ bool ParamUtil::PatchMemoryWithBackup(PATCH_INF &PatchInf)
 	{
 		TempPatch = Patch;
 
+		if (pProcMem->ReadProcMem(TempPatch.Address, TempPatch.Data, TempPatch.GetSize()) == false)
+			return false;
+
+		PatchInf.PatchBackupList.push_back(TempPatch);
+
 		if (Patch.GetType() == DataT::bit)
 		{
 			if (PatchBin(Patch) == false)
@@ -202,11 +207,6 @@ bool ParamUtil::PatchMemoryWithBackup(PATCH_INF &PatchInf)
 			if (pProcMem->WriteProcMem(Patch.Address, Patch.Data, Patch.GetSize()) == false)
 				return false;
 		}
-
-		if (pProcMem->ReadProcMem(TempPatch.Address, TempPatch.Data, TempPatch.GetSize()) == false)
-			return false;
-
-		PatchInf.PatchBackupList.push_back(TempPatch);
 	}
 	PatchInf.PatchList.clear();
 	return true;

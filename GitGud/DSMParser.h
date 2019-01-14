@@ -88,7 +88,7 @@ static FIELD WeaponFieldList[WEAPON_FIELD_LIST_SIZE] =
 	{"faith_req"         , DataT::uint_8  , 0x000000F1, 0},
 
 	{"luck_bonus"        , DataT::bit     , 0x00000103, 0},
-	{"can_be_buffed"     , DataT::bit     , 0x00000102, 0},
+	{"can_be_buffed"     , DataT::bit     , 0x00000102, 7},
 	{"disable_repair"    , DataT::bit     , 0x00000103, 3}
 };
 
