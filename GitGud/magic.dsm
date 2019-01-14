@@ -1,7 +1,0 @@
-[magic_mod:0x2579C0] -- Chaos Bed Vestiges original values
-fp_cost      = 35
-stamina_cost = 75
-slots_used   = 2
-req_int      = 20
-req_faith    = 10
-cast_anim_id = 43

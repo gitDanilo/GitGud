@@ -204,8 +204,17 @@ RET_INF DSMParser::GetPatchDataList(const PARAM_CLASS &Param, std::vector<PatchD
 			if (inStream.bad())
 				return SetRetInf(ReturnID::read_error);
 
-			if (inStream.eof() && i != dwListSize - 1)
-				return SetRetInf(ReturnID::end_of_file);
+			if (inStream.eof())
+			{
+				if (i == 0)
+				{
+					if (sLine.empty())
+						return SetRetInf(ReturnID::success);
+					return SetRetInf(ReturnID::end_of_file);
+				}
+				if (i != dwListSize - 1)
+					return SetRetInf(ReturnID::end_of_file);
+			}
 
 			if (GetNextField() == false)
 				return SetRetInf(ReturnID::syntax_error);

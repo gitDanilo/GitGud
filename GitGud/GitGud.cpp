@@ -746,22 +746,22 @@ void PrintParserError(const RET_INF &Inf)
 	switch (Inf.RetID)
 	{
 		case ReturnID::end_of_file:
-			std::cout << clr::red << "\t|--> Expecting a field on line: " << std::dec << Inf.dwLine << '.' << std::endl << std::endl;
+			std::cout << clr::red << "\t|--> Expecting more field(s) after line " << std::dec << Inf.dwLine << '.' << std::endl << std::endl;
 			break;
 		case ReturnID::read_error:
-			std::cout << clr::red << "\t|--> Error reading the file." << std::endl << std::endl;
+			std::cout << clr::red << "\t|--> Error reading file." << std::endl << std::endl;
 			break;
 		case ReturnID::syntax_error:
-			std::cout << clr::red << "\t|--> Syntax error on line: " << std::dec << Inf.dwLine << '.' << std::endl << std::endl;
+			std::cout << clr::red << "\t|--> Syntax error on line " << std::dec << Inf.dwLine << '.' << std::endl << std::endl;
 			break;
 		case ReturnID::invalid_field:
-			std::cout << clr::red << "\t|--> Invalid field name on line: " << std::dec << Inf.dwLine << '.' << std::endl << std::endl;
+			std::cout << clr::red << "\t|--> Invalid field name on line " << std::dec << Inf.dwLine << '.' << std::endl << std::endl;
 			break;
 		case ReturnID::invalid_data:
-			std::cout << clr::red << "\t|--> Invalid data on line: " << std::dec << Inf.dwLine << '.' << std::endl << std::endl;
+			std::cout << clr::red << "\t|--> Invalid data on line " << std::dec << Inf.dwLine << '.' << std::endl << std::endl;
 			break;
 		case ReturnID::invalid_id:
-			std::cout << clr::red << "\t|--> Invalid id on line: " << std::dec << Inf.dwLine << '.' << std::endl << std::endl;
+			std::cout << clr::red << "\t|--> Invalid id on line " << std::dec << Inf.dwLine << '.' << std::endl << std::endl;
 			break;
 		default:
 			std::cout << clr::red << "\t|--> Unknown error." << std::endl << std::endl;
