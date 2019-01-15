@@ -661,12 +661,16 @@ bool PrintDSStruct()
 	size_t MaxStrSize  = 0;
 	std::string sData;
 
+	std::cout.flush();
+	std::cout.clear();
+
 	std::cout << clr::green << "1 " << clr::white << "- Weapon struct" << std::endl;
 	std::cout << clr::green << "2 " << clr::white << "- Effect struct" << std::endl;
 	std::cout << clr::green << "3 " << clr::white << "- Attack struct" << std::endl;
 	std::cout << clr::green << "4 " << clr::white << "- Magic struct" << std::endl;
 	std::cout << clr::green << "5 " << clr::white << "- Bullet struct" << std::endl;
 	std::cout << clr::cyan << "Select a struct to read: " << clr::green;
+	std::cin.clear();
 	std::getline(std::cin, sData);
 
 	try
@@ -713,6 +717,7 @@ bool PrintDSStruct()
 
 	std::cout << clr::cyan << "Struct ID: " << clr::green;
 	sData.clear();
+	std::cin.clear();
 	std::getline(std::cin, sData);
 
 	try

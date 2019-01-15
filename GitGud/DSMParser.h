@@ -57,7 +57,7 @@ static STRUCT_FIELD PlayerFieldList[PLAYER_FIELD_LIST_SIZE] =
 	{"edit_npc_stats"    , DataT::bool_8, offsetof(PLAYER_STRUCT, bEditNPCStat)      }
 };
 
-#define WEAPON_FIELD_LIST_SIZE 24
+#define WEAPON_FIELD_LIST_SIZE 28
 static FIELD WeaponFieldList[WEAPON_FIELD_LIST_SIZE] =
 {
 	{"weapon_mod"        , DataT::uint_32 , MAXDWORD  , 0},
@@ -86,6 +86,11 @@ static FIELD WeaponFieldList[WEAPON_FIELD_LIST_SIZE] =
 	{"dexterity_req"     , DataT::uint_8  , 0x000000EF, 0},
 	{"intelligence_req"  , DataT::uint_8  , 0x000000F0, 0},
 	{"faith_req"         , DataT::uint_8  , 0x000000F1, 0},
+
+	{"demon_dmg_rate"    , DataT::float_32, 0x0000009C, 0},
+	{"undead_dmg_rate"   , DataT::float_32, 0x000000A0, 0},
+	{"hollow_dmg_rate"   , DataT::float_32, 0x000000A4, 0},
+	{"abyssal_dmg_rate"  , DataT::float_32, 0x000000A8, 0},
 
 	{"luck_bonus"        , DataT::bit     , 0x00000103, 0},
 	{"can_be_buffed"     , DataT::bit     , 0x00000102, 7},

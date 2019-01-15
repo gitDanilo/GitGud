@@ -1,5 +1,5 @@
 -- "@" disable a field, can´t be used on the weapon's ID
-[weapon_mod:0x4C4B40] -- ID in hexadecimal or decimal
+[weapon_mod:0x4C4B40] -- Uchigatana
 -- Attack power: positive integer values from 0 to 65535
 physical_base      = @
 magic_base         = @
@@ -25,7 +25,70 @@ strength_req       = 10
 dexterity_req      = 10
 intelligence_req   = 0
 faith_req          = 0
+-- Damage rate against enemy type: decimal
+demon_dmg_rate     = @
+undead_dmg_rate    = @
+hollow_dmg_rate    = @
+abyssal_dmg_rate   = @
 -- Flags: true, false, can´t be hexadecimal
 luck_bonus         = true
 can_be_buffed      = true
+disable_repair     = true
+---------------------------------------------
+[weapon_mod:0x7CD120] -- Vordt's Great Hammer
+physical_base      = 170
+magic_base         = @
+fire_base          = @
+lightning_base     = @
+dark_base          = @
+effect_on_hit_1    = @
+effect_on_hit_2    = @
+effect_on_hit_3    = @
+effect_on_self_1   = @
+effect_on_self_2   = @
+effect_on_self_3   = @
+strength_bonus     = 115.0
+dexterity_bonus    = @
+intelligence_bonus = @
+faith_bonus        = @
+luck_bonus         = @
+strength_req       = 35
+dexterity_req      = @
+intelligence_req   = @
+faith_req          = @
+demon_dmg_rate     = @
+undead_dmg_rate    = @
+hollow_dmg_rate    = @
+abyssal_dmg_rate   = @
+luck_bonus         = false
+can_be_buffed      = false
+disable_repair     = true
+--------------------------------------------------
+[weapon_mod:0xF4C040] -- Dancer's Enchanted Swords
+physical_base      = 75
+magic_base         = 55
+fire_base          = 55
+lightning_base     = @
+dark_base          = @
+effect_on_hit_1    = @
+effect_on_hit_2    = @
+effect_on_hit_3    = @
+effect_on_self_1   = @
+effect_on_self_2   = @
+effect_on_self_3   = @
+strength_bonus     = 0
+dexterity_bonus    = 15.0
+intelligence_bonus = 130.0
+faith_bonus        = 40.0
+luck_bonus         = @
+strength_req       = 0
+dexterity_req      = 12
+intelligence_req   = 30
+faith_req          = 25
+demon_dmg_rate     = @
+undead_dmg_rate    = @
+hollow_dmg_rate    = @
+abyssal_dmg_rate   = @
+luck_bonus         = false
+can_be_buffed      = false
 disable_repair     = true
