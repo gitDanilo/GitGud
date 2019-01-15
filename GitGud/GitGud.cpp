@@ -158,7 +158,7 @@ enum class PatchID
 CONSOLE_SCREEN_BUFFER_INFO DefaultConsoleInfo = {};
 
 PLAYER_STRUCT PlayerData;
-PLAYER_STRUCT PlayerDataBackup = {false, false, false, false, false, false, false, false};
+PLAYER_STRUCT PlayerDataBackup = {};
 PATCH_INF WeaponPatchInf;
 PATCH_INF EffectPatchInf;
 PATCH_INF AttackPatchInf;
@@ -269,11 +269,6 @@ LRESULT CALLBACK KeyboardHookProc(int nCode, WPARAM wParam, LPARAM lParam)
 				OnKBEvent(GetAsyncKeyState(VK_SHIFT), PatchID::patch_bullet);
 				break;
 			}
-			case VK_F9:
-			{
-				OnKBEvent2(GetAsyncKeyState(VK_SHIFT), ActionID::patch_all);
-				break;
-			}
 			case VK_F6:
 			{
 				OnKBEvent2(GetAsyncKeyState(VK_SHIFT), ActionID::patch_player);
@@ -287,6 +282,11 @@ LRESULT CALLBACK KeyboardHookProc(int nCode, WPARAM wParam, LPARAM lParam)
 			case VK_F8:
 			{
 				OnKBEvent2(GetAsyncKeyState(VK_SHIFT), ActionID::toggle_gravity);
+				break;
+			}
+			case VK_F9:
+			{
+				OnKBEvent2(GetAsyncKeyState(VK_SHIFT), ActionID::patch_all);
 				break;
 			}
 			case VK_F10:
@@ -504,28 +504,50 @@ void OnKBEvent2(bool bShift, ActionID Action)
 	{
 		case ActionID::patch_all:
 		{
-			if (ParamUtil::PatchMemory(WeaponPatchInf.PatchBackupList) &&
-				ParamUtil::PatchMemory(EffectPatchInf.PatchBackupList) &&
-				ParamUtil::PatchMemory(AttackPatchInf.PatchBackupList) &&
-				ParamUtil::PatchMemory(MagicPatchInf.PatchBackupList) &&
-				ParamUtil::PatchMemory(BulletPatchInf.PatchBackupList) &&
-				LoadPatchData(FileID::weapon) &&
-				LoadPatchData(FileID::effect) &&
-				LoadPatchData(FileID::attack) &&
-				LoadPatchData(FileID::magic) &&
-				LoadPatchData(FileID::bullet) &&
-				ParamUtil::PatchMemoryWithBackup(WeaponPatchInf) &&
-				ParamUtil::PatchMemoryWithBackup(EffectPatchInf) &&
-				ParamUtil::PatchMemoryWithBackup(AttackPatchInf) &&
-				ParamUtil::PatchMemoryWithBackup(MagicPatchInf) &&
-				ParamUtil::PatchMemoryWithBackup(BulletPatchInf))
+			if (bShift == false)
 			{
-				SuccessBeep();
+				if (ParamUtil::PatchMemory(WeaponPatchInf.PatchBackupList) &&
+					ParamUtil::PatchMemory(EffectPatchInf.PatchBackupList) &&
+					ParamUtil::PatchMemory(AttackPatchInf.PatchBackupList) &&
+					ParamUtil::PatchMemory(MagicPatchInf.PatchBackupList)  &&
+					ParamUtil::PatchMemory(BulletPatchInf.PatchBackupList) &&
+					LoadPatchData(FileID::weapon) &&
+					LoadPatchData(FileID::effect) &&
+					LoadPatchData(FileID::attack) &&
+					LoadPatchData(FileID::magic)  &&
+					LoadPatchData(FileID::bullet) &&
+					LoadPatchData(FileID::player) &&
+					ParamUtil::PatchMemoryWithBackup(WeaponPatchInf) &&
+					ParamUtil::PatchMemoryWithBackup(EffectPatchInf) &&
+					ParamUtil::PatchMemoryWithBackup(AttackPatchInf) &&
+					ParamUtil::PatchMemoryWithBackup(MagicPatchInf)  &&
+					ParamUtil::PatchMemoryWithBackup(BulletPatchInf) &&
+					ParamUtil::PatchMemory(PlayerData, BaseA, BaseB, BaseC, ParamList[ParamID::sp_effect_param]))
+				{
+					SuccessBeep();
+				}
+				else
+				{
+					FailBeep();
+					bFail = true;
+				}
 			}
 			else
 			{
-				FailBeep();
-				bFail = true;
+				if (ParamUtil::PatchMemory(WeaponPatchInf.PatchBackupList) &&
+					ParamUtil::PatchMemory(EffectPatchInf.PatchBackupList) &&
+					ParamUtil::PatchMemory(AttackPatchInf.PatchBackupList) &&
+					ParamUtil::PatchMemory(MagicPatchInf.PatchBackupList)  &&
+					ParamUtil::PatchMemory(BulletPatchInf.PatchBackupList) &&
+					ParamUtil::PatchMemory(PlayerDataBackup, BaseA, BaseB, BaseC, ParamList[ParamID::sp_effect_param]))
+				{
+					SuccessBeep2();
+				}
+				else
+				{
+					FailBeep();
+					bFail = true;
+				}
 			}
 			break;
 		}
@@ -795,11 +817,12 @@ void PrintInputOptions()
 	std::cout << clr::cyan << "<SHIFT + F8>" << clr::white << " - Increment player Z pos."           << std::endl;
 	
 	std::cout << clr::pink << "<    F9    >" << clr::white << " - Load all modifications files."     << std::endl;
+	std::cout << clr::cyan << "<SHIFT + F9>" << clr::white << " - Restore all modifications."        << std::endl;
 
-	std::cout << clr::cyan << "<   F10    >" << clr::white << " - Read struct data."                 << std::endl;
+	std::cout << clr::pink << "<   F10    >" << clr::white << " - Read struct data."                 << std::endl;
 	
-	std::cout << clr::pink << "<   F12    >" << clr::white << " - Restore all backup data and exit." << std::endl;
-	std::cout << clr::cyan << "<SHIFT +F12>" << clr::white << " - Exit."                             << std::endl;
+	std::cout << clr::cyan << "<   F12    >" << clr::white << " - Restore all backup data and exit." << std::endl;
+	std::cout << clr::pink << "<SHIFT +F12>" << clr::white << " - Exit."                             << std::endl;
 	
 	std::cout << std::endl << clr::cyan << "Waiting for input..." << std::endl << std::endl;
 }

@@ -40,6 +40,7 @@ typedef struct _PLAYER_STRUCT
 	bool bNoArrowsConsume;
 	bool bBackflipAnimation;
 	bool bNPCRedEyeVFX;
+	bool bNPCAggroMod;
 	bool bEditNPCStat;
 } PLAYER_STRUCT, *PPLAYER_STRUCT;
 
