@@ -47,6 +47,56 @@ weapon_blood         = @
 soul_rate            = @
 drop_rate            = @
 effect_on_hit        = @
+---------------------------------
+[effect_mod:0xE74] -- Seed effect
+effect_duration      = -1
+motion_interval      = @
+max_hp_rate          = @
+max_fp_rate          = @
+max_stamina_rate     = @
+slash_dmg_rate       = @
+blow_dmg_rate        = @
+thrust_dmg_rate      = @
+neutral_dmg_rate     = @
+magic_dmg_rate       = @
+fire_dmg_rate        = @
+lightning_dmg_rate   = @
+physical_power_rate  = @
+magic_power_rate     = @
+fire_power_rate      = @
+lightning_power_rate = @
+physical_power       = @
+magic_power          = @
+fire_power           = @
+lightning_power      = @
+physical_def_rate    = @
+magic_def_rate       = @
+fire_def_rate        = @
+lightning_def_rate   = @
+physical_def         = @
+magic_def            = @
+fire_def             = @
+lightning_def        = @
+change_hp            = @
+change_fp            = @
+fall_dmg_rate        = @
+attunement_slot      = @
+vigor_buff           = @
+attunement_buff      = @
+endurance_buff       = @
+vitality_buff        = @
+strenght_buff        = @
+dexterity_buff       = @
+intelligence_buff    = @
+faith_buff           = @
+luck_buff            = @
+poison_rate          = @
+frost_rate           = @
+effect_id            = @
+weapon_blood         = @
+soul_rate            = @
+drop_rate            = @
+effect_on_hit        = @
 -------------------------------------------
 [effect_mod:0x7B066F0] -- Uchigatana effect 
 effect_duration      = @
@@ -144,7 +194,7 @@ poison_rate          = @
 frost_rate           = @
 effect_id            = 0x6AD9584 -- Gold serpent ring +3 effect
 weapon_blood         = @
-soul_rate            = 1.25
+soul_rate            = 1.30
 drop_rate            = @
 effect_on_hit        = -1
 --------------------------------------------------------------
@@ -199,7 +249,7 @@ drop_rate            = @
 effect_on_hit        = @
 ---------------------------------------------------------
 [effect_mod:0x8874148] -- Vordt Great Hammer frost effect
-effect_duration      = 30.0
+effect_duration      = 25.0
 motion_interval      = @
 max_hp_rate          = @
 max_fp_rate          = @
