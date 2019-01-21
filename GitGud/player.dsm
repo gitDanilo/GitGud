@@ -1,7 +1,7 @@
 [player_mod]
 invisible          = false
 super_armor        = false
-no_damage          = true
+no_damage          = false
 no_fp_cost         = false
 no_stamina_cost    = false
 no_goods_consume   = false

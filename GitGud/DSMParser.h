@@ -97,7 +97,7 @@ static FIELD WeaponFieldList[WEAPON_FIELD_LIST_SIZE] =
 	{"disable_repair"    , DataT::bit     , 0x00000103, 3}
 };
 
-#define EFFECT_FIELD_LIST_SIZE 49
+#define EFFECT_FIELD_LIST_SIZE 52
 static FIELD EffectFieldList[EFFECT_FIELD_LIST_SIZE] =
 {
 	{"effect_mod"          , DataT::uint_32 , MAXDWORD  , 0},
@@ -142,7 +142,8 @@ static FIELD EffectFieldList[EFFECT_FIELD_LIST_SIZE] =
 
 	{"fall_dmg_rate"       , DataT::float_32, 0x000000DC, 0},
 
-	{"attunement_slot"     , DataT::uint_8  , 0x00000143, 0},
+	{"magic_slot"          , DataT::uint_8  , 0x00000142, 0},
+	{"miracle_slot"        , DataT::uint_8  , 0x00000143, 0},
 
 	{"vigor_buff"          , DataT::uint_8  , 0x00000308, 0},
 	{"attunement_buff"     , DataT::uint_8  , 0x00000309, 0},
@@ -157,14 +158,16 @@ static FIELD EffectFieldList[EFFECT_FIELD_LIST_SIZE] =
 	{"poison_rate"         , DataT::uint_32 , 0x000000CC, 0},
 	{"frost_rate"          , DataT::uint_32 , 0x000001AC, 0},
 
-	{"effect_id"           , DataT::int_32  , 0x00000128, 0},
+	{"replace_effect_id"   , DataT::int_32  , 0x00000124, 0},
+	{"cycle_effect_id"     , DataT::int_32  , 0x00000128, 0},
+	{"effect_on_hit"       , DataT::int_32  , 0x0000012C, 0},
 
 	{"weapon_blood"        , DataT::uint_32 , 0x000000D4, 0},
 
 	{"soul_rate"           , DataT::float_32, 0x000000E0, 0},
 	{"drop_rate"           , DataT::float_32, 0x00000104, 0},
 
-	{"effect_on_hit"       , DataT::int_32  , 0x0000012C, 0}
+	{"fp_rate"             , DataT::float_32, 0x000002CC, 0}
 };
 
 #define ATTACK_FIELD_LIST_SIZE 28
