@@ -841,6 +841,8 @@ bool PrintStructID()
 		return true;
 	}
 
+	Addr += iOffset;
+
 	if (dwStruct == MAXDWORD)
 	{
 		for (i = 0; i < PARAM_LIST_SIZE; ++i)
