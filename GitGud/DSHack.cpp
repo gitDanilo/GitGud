@@ -29,17 +29,17 @@ bool DSHack::ToggleGravity(BYTE* BaseAddr)
 	return true;
 }
 
-bool DSHack::ToggleAI(BYTE* BaseAddr)
+bool DSHack::ToggleAI(BYTE* BaseAddr, bool bEnable)
 {
 	BYTE byte;
 	Memory* pProcMem = Memory::GetInstance();
 
 	BaseAddr = BaseAddr + 0x9 + 0x4;
 
-	if (pProcMem->ReadProcMem(BaseAddr, byte) == false)
-		return false;
+	//if (pProcMem->ReadProcMem(BaseAddr, byte) == false)
+	//	return false;
 
-	byte = (byte ? 0 : 1);
+	byte = (bEnable ? 0 : 1);
 
 	if (pProcMem->WriteProcMem(BaseAddr, byte) == false)
 		return false;

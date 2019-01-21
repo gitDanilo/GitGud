@@ -269,6 +269,21 @@ BYTE* ParamUtil::GetIDAddr(const PARAM_CLASS &ParamClass, DWORD dwID)
 	return nullptr;
 }
 
+DWORD ParamUtil::GetAddrID(const PARAM_CLASS &ParamClass, BYTE* Addr)
+{
+	if (ParamClass.wObjCount == 0)
+		return 0;
+
+	int i;
+	for (i = 0; i < ParamClass.wObjCount; ++i)
+	{
+		if (ParamClass.ObjList[i].Address == Addr)
+			return ParamClass.ObjList[i].dwID;
+	}
+
+	return 0;
+}
+
 #define STR_PARAM_MAX 32
 bool ParamUtil::LoadParamList(const BYTE* ParamPatch, PPARAM_CLASS ParamList, DWORD dwParamListSize)
 {

@@ -93,6 +93,7 @@ namespace ParamUtil
 	bool PatchMemory(std::vector<PatchData> &PatchList);
 	bool PatchMemoryWithBackup(PATCH_INF &PatchInf);
 	BYTE* GetIDAddr(const PARAM_CLASS &ParamClass, DWORD dwID);
+	DWORD GetAddrID(const PARAM_CLASS &ParamClass, BYTE* Addr);
 	WORD LoadObjList(PARAM_CLASS &ParamClass);
 	bool LoadParamList(const BYTE* ParamPatch, PPARAM_CLASS ParamList, DWORD dwParamListSize);
 	void DestroyParamList(PPARAM_CLASS ParamList, DWORD dwParamListSize);

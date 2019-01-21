@@ -62,8 +62,8 @@ static const BYTE AOB_BASE_C[] = // Roll
 ///////////////
 //// Lists ////
 ///////////////
-#define MODULELIST_SIZE 1
-static MODULE_INFO ModuleList[MODULELIST_SIZE] =
+#define MODULE_LIST_SIZE 1
+static MODULE_INFO ModuleList[MODULE_LIST_SIZE] =
 {
 	{"DarkSoulsIII.exe", 0, 0, nullptr}
 };
@@ -96,26 +96,26 @@ namespace SigID
 	};
 }
 
-#define PARAMLIST_SIZE 17
-static PARAM_CLASS ParamList[PARAMLIST_SIZE] =
+#define PARAM_LIST_SIZE 9
+static PARAM_CLASS ParamList[PARAM_LIST_SIZE] =
 {
 	{"EquipParamWeapon"    , nullptr, nullptr, 0},
 	{"EquipParamProtector" , nullptr, nullptr, 0},
 	{"EquipParamGoods"     , nullptr, nullptr, 0},
 	{"EquipParamAccessory" , nullptr, nullptr, 0},
 	{"SpEffectParam"       , nullptr, nullptr, 0},
-	{"ThrowParam"          , nullptr, nullptr, 0},
 	{"BehaviorParam_PC"    , nullptr, nullptr, 0},
 	{"AtkParam_Pc"         , nullptr, nullptr, 0},
-	{"SpEffectVfxParam"    , nullptr, nullptr, 0},
-	{"ObjectParam"         , nullptr, nullptr, 0},
-	{"BonfireWarpParam"    , nullptr, nullptr, 0},
-	{"HitEffectSfxParam"   , nullptr, nullptr, 0},
-	{"ShopLineupParam"     , nullptr, nullptr, 0},
-	{"ItemLotParam"        , nullptr, nullptr, 0},
-	{"SwordArtsParam"      , nullptr, nullptr, 0},
 	{"Magic"               , nullptr, nullptr, 0},
 	{"Bullet"              , nullptr, nullptr, 0}
+	//{"ThrowParam"          , nullptr, nullptr, 0},
+	//{"SpEffectVfxParam"    , nullptr, nullptr, 0},
+	//{"ObjectParam"         , nullptr, nullptr, 0},
+	//{"BonfireWarpParam"    , nullptr, nullptr, 0},
+	//{"HitEffectSfxParam"   , nullptr, nullptr, 0},
+	//{"ShopLineupParam"     , nullptr, nullptr, 0},
+	//{"ItemLotParam"        , nullptr, nullptr, 0},
+	//{"SwordArtsParam"      , nullptr, nullptr, 0}
 };
 
 namespace ParamID
@@ -127,24 +127,24 @@ namespace ParamID
 		equip_param_goods,
 		equip_param_accessory,
 		sp_effect_param,
-		throw_param,
 		behavior_param_pc,
 		atk_param_pc,
-		sp_effect_vfx_param,
-		object_param,
-		bonfire_warp_param,
-		hit_effect_sfx_param,
-		shop_lineup_param,
-		item_lot_param,
-		sword_arts_param,
 		magic,
 		bullet
+		//throw_param,
+		//sp_effect_vfx_param,
+		//object_param,
+		//bonfire_warp_param,
+		//hit_effect_sfx_param,
+		//shop_lineup_param,
+		//item_lot_param,
+		//sword_arts_param
 	};
 }
 
 enum class ActionID
 {
-	patch_all, patch_player, toggle_gravity, toggle_ai, print_ds_struct, exit
+	patch_all, patch_player, toggle_gravity, toggle_ai, print_ds_struct, print_struct_id, exit
 };
 
 enum class PatchID
@@ -187,6 +187,7 @@ bool LoadModules();
 bool GetStrData(const BYTE* Addr, DataT DataType, BYTE BitOffset, std::string &sData);
 
 bool PrintDSStruct();
+bool PrintStructID();
 void PrintParamList();
 void PrintParserError(const RET_INF &Inf);
 void PrintInputOptions();
@@ -240,6 +241,7 @@ BOOL WINAPI ConsoleEventHandler(DWORD dwEvent)
 LRESULT CALLBACK KeyboardHookProc(int nCode, WPARAM wParam, LPARAM lParam)
 {
 	PKBDLLHOOKSTRUCT ptrKBHOOK = reinterpret_cast<PKBDLLHOOKSTRUCT>(lParam);
+	bool bSkip = false;
 	if (wParam == WM_KEYDOWN)
 	{
 		switch (ptrKBHOOK->vkCode)
@@ -247,61 +249,72 @@ LRESULT CALLBACK KeyboardHookProc(int nCode, WPARAM wParam, LPARAM lParam)
 			case VK_F1:
 			{
 				OnKBEvent(GetAsyncKeyState(VK_SHIFT), PatchID::patch_weapon);
+				bSkip = true;
 				break;
 			}
 			case VK_F2:
 			{
 				OnKBEvent(GetAsyncKeyState(VK_SHIFT), PatchID::patch_effect);
+				bSkip = true;
 				break;
 			}
 			case VK_F3:
 			{
 				OnKBEvent(GetAsyncKeyState(VK_SHIFT), PatchID::patch_attack);
+				bSkip = true;
 				break;
 			}
 			case VK_F4:
 			{
 				OnKBEvent(GetAsyncKeyState(VK_SHIFT), PatchID::patch_magic);
+				bSkip = true;
 				break;
 			}
 			case VK_F5:
 			{
 				OnKBEvent(GetAsyncKeyState(VK_SHIFT), PatchID::patch_bullet);
+				bSkip = true;
 				break;
 			}
 			case VK_F6:
 			{
 				OnKBEvent2(GetAsyncKeyState(VK_SHIFT), ActionID::patch_player);
+				bSkip = true;
 				break;
 			}
 			case VK_F7:
 			{
 				OnKBEvent2(GetAsyncKeyState(VK_SHIFT), ActionID::toggle_ai);
+				bSkip = true;
 				break;
 			}
 			case VK_F8:
 			{
 				OnKBEvent2(GetAsyncKeyState(VK_SHIFT), ActionID::toggle_gravity);
+				bSkip = true;
 				break;
 			}
 			case VK_F9:
 			{
 				OnKBEvent2(GetAsyncKeyState(VK_SHIFT), ActionID::patch_all);
+				bSkip = true;
 				break;
 			}
 			case VK_F10:
 			{
 				OnKBEvent2(GetAsyncKeyState(VK_SHIFT), ActionID::print_ds_struct);
+				bSkip = true;
 				break;
 			}
 			case VK_F12:
 			{
 				OnKBEvent2(GetAsyncKeyState(VK_SHIFT), ActionID::exit);
+				bSkip = true;
 				break;
 			}
 		}
 	}
-	return CallNextHookEx(nullptr, nCode, wParam, lParam);
+	return bSkip == true ? 1 : CallNextHookEx(nullptr, nCode, wParam, lParam);
 }
 
 bool ScanSignatures()
@@ -309,7 +322,7 @@ bool ScanSignatures()
 	DWORD i, j;
 	BYTE* AOBAddr = nullptr;
 
-	for (i = 0; i < MODULELIST_SIZE; ++i)
+	for (i = 0; i < MODULE_LIST_SIZE; ++i)
 	{
 		std::cout << clr::white << "Scanning for signatures on module " << clr::yellow << ModuleList[i].sModuleName;
 		std::cout << clr::white << '(' << clr::green << "0x" << std::hex << std::uppercase << reinterpret_cast<QWORD>(ModuleList[i].ModuleBaseAddr) << clr::white << ")..." << std::endl;
@@ -348,11 +361,11 @@ bool ScanSignatures()
 
 bool LoadModules()
 {
-	for (int i = 0; i < MODULELIST_SIZE; ++i)
+	for (int i = 0; i < MODULE_LIST_SIZE; ++i)
 	{
 		if (pProcMem->IsProcessRunning() == false)
 			return false;
-		std::cout << clr::white << "Loading module " << clr::yellow << ModuleList[i].sModuleName << clr::white << " (" << (i + 1) << '/' << MODULELIST_SIZE << ')' << std::endl;
+		std::cout << clr::white << "Loading module " << clr::yellow << ModuleList[i].sModuleName << clr::white << " (" << (i + 1) << '/' << MODULE_LIST_SIZE << ')' << std::endl;
 		if (pProcMem->LoadModule(ModuleList[i].sModuleName, ModuleList[i].ModuleBaseAddr, ModuleList[i].dwModuleSize) == false)
 		{
 			std::cout << clr::red << "Failed to load module. Retrying in 5 seconds..." << std::endl;
@@ -583,11 +596,20 @@ void OnKBEvent2(bool bShift, ActionID Action)
 		{
 			if (hKeyboardHook != nullptr)
 				UnhookWindowsHookEx(hKeyboardHook);
-
-			if (PrintDSStruct() == false)
-				bFail = true;
+			
+			if (bShift == false)
+			{
+				if (PrintDSStruct() == false)
+					bFail = true;
+			}
+			else
+			{
+				if (PrintStructID() == false)
+					bFail = true;
+			}
 
 			hKeyboardHook = SetWindowsHookEx(WH_KEYBOARD_LL, KeyboardHookProc, nullptr, 0);
+
 			break;
 		}
 		case ActionID::toggle_gravity:
@@ -616,8 +638,13 @@ void OnKBEvent2(bool bShift, ActionID Action)
 		}
 		case ActionID::toggle_ai:
 		{
-			if (DSHack::ToggleAI(BaseB))
-				SuccessBeep();
+			if (DSHack::ToggleAI(BaseB, bShift))
+			{
+				if (!bShift)
+					SuccessBeep();
+				else
+					SuccessBeep2();
+			}
 			else
 			{
 				FailBeep();
@@ -661,13 +688,10 @@ bool PrintDSStruct()
 	size_t MaxStrSize  = 0;
 	std::string sData;
 
-	std::cout.flush();
-	std::cout.clear();
-
 	std::cout << clr::green << "1 " << clr::white << "- Weapon struct" << std::endl;
 	std::cout << clr::green << "2 " << clr::white << "- Effect struct" << std::endl;
 	std::cout << clr::green << "3 " << clr::white << "- Attack struct" << std::endl;
-	std::cout << clr::green << "4 " << clr::white << "- Magic struct" << std::endl;
+	std::cout << clr::green << "4 " << clr::white << "- Magic struct"  << std::endl;
 	std::cout << clr::green << "5 " << clr::white << "- Bullet struct" << std::endl;
 	std::cout << clr::cyan << "Select a struct to read: " << clr::green;
 	std::cin.clear();
@@ -758,10 +782,49 @@ bool PrintDSStruct()
 	return true;
 }
 
+bool PrintStructID()
+{
+	int i;
+	DWORD dwID;
+	std::string sData;
+	BYTE* Addr = nullptr;
+
+	std::cout << clr::cyan << "Struct address: " << clr::green;
+	std::cin.clear();
+	std::getline(std::cin, sData);
+
+	try
+	{
+		Addr = reinterpret_cast<BYTE*>(std::stoull(sData, nullptr, (sData.find("0x") == 0) ? 16 : 10));
+	}
+	catch (...)
+	{
+		std::cout << clr::red << "Invalid address." << std::endl << std::endl;
+		return true;
+	}
+
+	for (i = 0; i < PARAM_LIST_SIZE; ++i)
+	{
+		if (ParamList[i].ParamAddr == nullptr)
+			return false;
+		
+		dwID = ParamUtil::GetAddrID(ParamList[i], Addr);
+		if (dwID != 0)
+		{
+			std::cout << clr::white << "ID found: " << clr::green << "0x" << std::hex << std::uppercase << dwID << std::endl << std::endl;
+			return true;
+		}
+	}
+
+	std::cout << clr::red << "ID not found." << std::endl << std::endl;
+
+	return true;
+}
+
 void PrintParamList()
 {
 	std::cout << clr::white << "Param list objects:" << std::endl;
-	for (int i = 0; i < PARAMLIST_SIZE; ++i)
+	for (int i = 0; i < PARAM_LIST_SIZE; ++i)
 	{
 		std::cout << clr::white << "\t|--> " << clr::green << "0x" << std::hex << std::uppercase << reinterpret_cast<QWORD>(ParamList[i].ParamAddr) << clr::white << ": " << clr::yellow << ParamList[i].sParamName << std::endl;
 		std::cout << clr::white << "\t|    Object count: " << std::dec << ParamList[i].wObjCount << '.' << std::endl;
@@ -806,25 +869,27 @@ void PrintInputOptions()
 	
 	std::cout << clr::cyan << "<    F3    >" << clr::white << " - Load modifications from "      << clr::cyan << FileList[FileID::attack].sName << clr::white << '.' << std::endl;
 	std::cout << clr::pink << "<SHIFT + F3>" << clr::white << " - Restore modifications from "   << clr::pink << FileList[FileID::attack].sName << clr::white << '.' << std::endl;
-																							     
+
 	std::cout << clr::cyan << "<    F4    >" << clr::white << " - Load modifications from "      << clr::cyan << FileList[FileID::magic].sName << clr::white << '.' << std::endl;
 	std::cout << clr::pink << "<SHIFT + F4>" << clr::white << " - Restore modifications from "   << clr::pink << FileList[FileID::magic].sName << clr::white << '.' << std::endl;
-																							     
+
 	std::cout << clr::cyan << "<    F5    >" << clr::white << " - Load modifications from "      << clr::cyan << FileList[FileID::bullet].sName << clr::white << '.' << std::endl;
 	std::cout << clr::pink << "<SHIFT + F5>" << clr::white << " - Restore modifications from "   << clr::pink << FileList[FileID::bullet].sName << clr::white << '.' << std::endl;
 
 	std::cout << clr::cyan << "<    F6    >" << clr::white << " - Load flags from "              << clr::cyan << FileList[FileID::player].sName << clr::white << '.' << std::endl;
 	std::cout << clr::pink << "<SHIFT + F6>" << clr::white << " - Disable flags from "           << clr::pink << FileList[FileID::player].sName << clr::white << '.' << std::endl;
 	
-	std::cout << clr::cyan << "<    F7    >" << clr::white << " - Toggle AI."                        << std::endl;
+	std::cout << clr::cyan << "<    F7    >" << clr::white << " - Disable AI."                       << std::endl;
+	std::cout << clr::pink << "<SHIFT + F7>" << clr::white << " - Enable AI."                        << std::endl;
 
-	std::cout << clr::pink << "<    F8    >" << clr::white << " - Toggle gravity."                   << std::endl;
-	std::cout << clr::cyan << "<SHIFT + F8>" << clr::white << " - Increment player Z pos."           << std::endl;
+	std::cout << clr::cyan << "<    F8    >" << clr::white << " - Toggle gravity." << std::endl;
+	std::cout << clr::pink << "<SHIFT + F8>" << clr::white << " - Increment player Z pos."           << std::endl;
 	
-	std::cout << clr::pink << "<    F9    >" << clr::white << " - Load all modifications files."     << std::endl;
-	std::cout << clr::cyan << "<SHIFT + F9>" << clr::white << " - Restore all modifications."        << std::endl;
+	std::cout << clr::cyan << "<    F9    >" << clr::white << " - Load all modifications files." << std::endl;
+	std::cout << clr::pink << "<SHIFT + F9>" << clr::white << " - Restore all modifications."        << std::endl;
 
-	std::cout << clr::pink << "<   F10    >" << clr::white << " - Read struct data."                 << std::endl;
+	std::cout << clr::cyan << "<   F10    >" << clr::white << " - Read struct data." << std::endl;
+	std::cout << clr::pink << "<SHIFT +F10>" << clr::white << " - Get struct ID by address."         << std::endl;
 	
 	std::cout << clr::cyan << "<   F12    >" << clr::white << " - Restore all backup data and exit." << std::endl;
 	std::cout << clr::pink << "<SHIFT +F12>" << clr::white << " - Exit."                             << std::endl;
@@ -844,7 +909,7 @@ bool LoadPatchData(DWORD dwFileID)
 			std::cout << clr::white << "Loading file " << clr::yellow << FileList[dwFileID].sName << clr::white << "..." << std::endl;
 			RetInf = FileParser.GetStruct(reinterpret_cast<BYTE*>(&PlayerData));
 			break;
-		// Patch
+			// Patch
 		case FileID::weapon:
 			std::cout << clr::white << "Loading file " << clr::yellow << FileList[dwFileID].sName << clr::white << "..." << std::endl;
 			RetInf = FileParser.GetPatchDataList(ParamList[ParamID::equip_param_weapon], WeaponPatchInf.PatchList);
@@ -885,7 +950,7 @@ void Cleanup()
 	if (hKeyboardHook != nullptr)
 		UnhookWindowsHookEx(hKeyboardHook);
 
-	ParamUtil::DestroyParamList(ParamList, PARAMLIST_SIZE);
+	ParamUtil::DestroyParamList(ParamList, PARAM_LIST_SIZE);
 
 	SetConsoleTextAttribute(clr::hConsole, DefaultConsoleInfo.wAttributes == 0 ? DEFAULT_COLOR : DefaultConsoleInfo.wAttributes);
 }
@@ -933,7 +998,7 @@ int main(int argc, char** argv)
 			BaseA = PatternList[SigID::base_a].Address + PatternList[SigID::base_a].dwAddrOffset;
 			BaseB = PatternList[SigID::base_b].Address + PatternList[SigID::base_b].dwAddrOffset;
 			BaseC = PatternList[SigID::base_c].Address;
-			if (ParamUtil::LoadParamList(ParamPatch, ParamList, PARAMLIST_SIZE) == true)
+			if (ParamUtil::LoadParamList(ParamPatch, ParamList, PARAM_LIST_SIZE) == true)
 			{
 				PrintParamList();
 				bFlag = true;
