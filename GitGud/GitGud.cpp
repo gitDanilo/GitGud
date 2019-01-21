@@ -785,9 +785,47 @@ bool PrintDSStruct()
 bool PrintStructID()
 {
 	int i;
-	DWORD dwID;
-	std::string sData;
+	DWORD dwID = 0;
+	DWORD dwStruct = MAXDWORD;
+	int iOffset = 0;
 	BYTE* Addr = nullptr;
+	std::string sData;
+
+	std::cout << clr::green << "1 " << clr::white << "- Effect struct" << std::endl;
+	std::cout << clr::green << "2 " << clr::white << "- Attack struct" << std::endl;
+	std::cout << clr::green << "3 " << clr::white << "- Any struct"    << std::endl;
+	std::cout << clr::cyan << "Select a struct: " << clr::green;
+	std::cin.clear();
+	std::getline(std::cin, sData);
+
+	try
+	{
+		dwStruct = std::stoul(sData, nullptr, 10);
+	}
+	catch (...)
+	{
+		std::cout << clr::red << "Invalid input." << std::endl << std::endl;
+		return true;
+	}
+
+	switch (dwStruct)
+	{
+		case 1:
+			dwStruct = ParamID::sp_effect_param;
+			iOffset = -0x8;
+			break;
+		case 2:
+			dwStruct = ParamID::atk_param_pc;
+			iOffset = -0x72;
+			break;
+		case 3:
+			dwStruct = MAXDWORD;
+			iOffset = 0;
+			break;
+		default:
+			std::cout << clr::red << "Invalid input." << std::endl << std::endl;
+			return true;
+	}
 
 	std::cout << clr::cyan << "Struct address: " << clr::green;
 	std::cin.clear();
@@ -803,12 +841,24 @@ bool PrintStructID()
 		return true;
 	}
 
-	for (i = 0; i < PARAM_LIST_SIZE; ++i)
+	if (dwStruct == MAXDWORD)
 	{
-		if (ParamList[i].ParamAddr == nullptr)
-			return false;
-		
-		dwID = ParamUtil::GetAddrID(ParamList[i], Addr);
+		for (i = 0; i < PARAM_LIST_SIZE; ++i)
+		{
+			if (ParamList[i].ParamAddr == nullptr)
+				return false;
+
+			dwID = ParamUtil::GetAddrID(ParamList[i], Addr);
+			if (dwID != 0)
+			{
+				std::cout << clr::white << "ID found: " << clr::green << "0x" << std::hex << std::uppercase << dwID << std::endl << std::endl;
+				return true;
+			}
+		}
+	}
+	else
+	{
+		dwID = ParamUtil::GetAddrID(ParamList[dwStruct], Addr);
 		if (dwID != 0)
 		{
 			std::cout << clr::white << "ID found: " << clr::green << "0x" << std::hex << std::uppercase << dwID << std::endl << std::endl;
